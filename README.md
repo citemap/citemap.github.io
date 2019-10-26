@@ -6,7 +6,7 @@ Resources relevant to legal and policy matters, as well as public and profession
 
 ***
 
-# If you'd like to submit papers, documentation or media relevant to the above, send and email to submissions@citemaps.ch
+### If you'd like to submit papers, documentation or media relevant to the above, send and email to submissions@citemaps.ch
 
 
 
