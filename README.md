@@ -14,7 +14,7 @@ The post page would look like this:
 
 ![Post page preview](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/post-example.jpg?raw=true)
 
-## Features
+## Features    
 
 - [Google Fonts](https://fonts.google.com/)
 - [Font Awesome](http://fontawesome.io/)
