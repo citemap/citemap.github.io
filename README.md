@@ -1,9 +1,12 @@
 # Gender Trends Resource Repository
 
-Gender Trends is a repository of research and media reflecting the study, treatment, public policy and communication concerning gender non-conforming children and adolescents. 
+Gender Trends is a repository of research and media supporting the study and treatment of gender non-conforming children and adolescents.
+Resources relevant to legal and policy matters, as well as public and professional guidance, are also included.
+
+
 ***
 
-### If you'd like to submit papers or media relevant to the above, send and email to submissions@citemaps.ch
+# If you'd like to submit papers, documentation or media relevant to the above, send and email to submissions@citemaps.ch
 
 
 
