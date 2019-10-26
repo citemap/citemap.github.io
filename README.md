@@ -8,8 +8,8 @@ Resources relevant to legal and policy matters, as well as public and profession
 
 ### If you'd like to submit papers, documentation or media relevant to the above, send an email to submissions@citemaps.ch
 
-> Submissions should come from qualified sources and include a link or recognized research, repository or archive ID.
-We do accept original indexes of the resources we're maintaining if they will be helpful to users. Indexes should be in HTML format, adhere to good accessibility practices, and employ relative URLs. You can find an index.html template in root of the repository.
+> Submissions should come from qualified sources and include a link or recognized citation a/o documentation repository or archive ID.
+> We do accept original indexes of the resources we're maintaining if they will be helpful to users. Indexes should be in HTML format,      > adhere to good accessibility practices, and employ relative URLs. You can find an index.html template in root of the reository.
 
 
 
