@@ -1,21 +1,36 @@
-# Gender Trends Resource Repository
+# Flexible-Jekyll is a simple and clean theme for Jekyll
 
-Gender Trends is a repository of research and media supporting the study and treatment of gender non-conforming children and adolescents.
-Resources relevant to legal and policy matters, as well as public and professional guidance, are also included.
+![](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/promo-img.jpg?raw=true)
 
+## Demo
 
-***
+Check the theme in action [Demo](https://artemsheludko.github.io/flexible-jekyll/)
 
-### If you'd like to submit papers, documentation or media relevant to the above, send an email to submissions@citemaps.ch
+The main page would look like this:
 
-> Submissions should come from qualified sources and include a link or recognized citation a/o documentation repository or archive ID.
-> We do accept original indexes of the resources we're maintaining if they will be helpful to users. Indexes should be in HTML format,      > adhere to good accessibility practices, and employ relative URLs. You can find an index.html template in root of the reository.
+![Main page preview](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/home-page.jpg?raw=true)
 
+The post page would look like this:
 
+![Post page preview](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/post-example.jpg?raw=true)
 
+## Features
 
+- [Google Fonts](https://fonts.google.com/)
+- [Font Awesome](http://fontawesome.io/)
+- [Disqus](https://disqus.com/)
+- [Analytics](https://analytics.google.com/analytics/web/)
+- Support Emoji
 
+## Installation:
 
+Fork the ``master`` branch and follow the [Jekyll Installation Documentation](https://jekyllrb.com/docs/installation/).
 
+## License
 
+GNU General Public License v3.0
 
+## Donate
+
+<p>If you like the themes that I create you can become my sponsor on <a href="https://www.patreon.com/artemsheludko" target="_blank">Patreon</a>.
+<p align="center"><b>Thank you for your support ❤️</b></p>
