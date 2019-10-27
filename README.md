@@ -2,7 +2,7 @@
 
 ![](https://github.com/citemap/citemap.github.io/blob/master/assets/img/Train.jpg?raw=true)
 
-## A public repository of research sources and media on the institutional, clinical, and social aspects of gender non-conformity among children and adolescents
+# sources and media on the institutional, clinical, and social dynamics affecting gender non-conforming children
 
 Check the theme in action [Demo](https://artemsheludko.github.io/flexible-jekyll/)
 
@@ -26,11 +26,4 @@ The post page would look like this:
 
 Fork the ``master`` branch and follow the [Jekyll Installation Documentation](https://jekyllrb.com/docs/installation/).
 
-## License
 
-GNU General Public License v3.0
-
-## Donate
-
-<p>If you like the themes that I create you can become my sponsor on <a href="https://www.patreon.com/artemsheludko" target="_blank">Patreon</a>.
-<p align="center"><b>Thank you for your support ❤️</b></p>
