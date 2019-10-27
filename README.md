@@ -1,8 +1,8 @@
-# Flexible-Jekyll is a simple and clean theme for Jekyll
+# Gender Trends Resource Repository
 
-![](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/promo-img.jpg?raw=true)
+![](https://github.com/citemap/citemap.github.io/blob/master/assets/img/davinci.jpg?raw=true)
 
-## Demo
+## A public repository of research sources and media on the institutional, clinical, and social aspects of gender non-conformity among children and adolescents
 
 Check the theme in action [Demo](https://artemsheludko.github.io/flexible-jekyll/)
 
