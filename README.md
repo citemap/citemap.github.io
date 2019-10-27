@@ -3,24 +3,23 @@
 ![](https://github.com/citemap/citemap.github.io/blob/master/assets/img/Train.jpg?raw=true)
 
 > A collection of significant research, policy, treatment and education 
-> source materials developed to assist gender non-conforming children
+> source materials from the institutions and individuals supporting gender non-conforming children
 
-Check the theme in action [Demo](https://artemsheludko.github.io/flexible-jekyll/)
 
 The main page would look like this:
 
-![Main page preview](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/home-page.jpg?raw=true)
+![Main page preview](https://github.com/citemap/citemap.github.io/blob/master/assets/img/bus.jpg?raw=true?raw=true)
 
 The post page would look like this:
 
-![Post page preview](https://github.com/artemsheludko/flexible-jekyll/blob/master/assets/img/post-example.jpg?raw=true)
+![Post page preview](https://github.com/citemap/citemap.github.io/blob/master/assets/img/farm.jpg?raw=true)
 
-## Features
+## Popular Archives
 
-- [Google Fonts](https://fonts.google.com/)
-- [Font Awesome](http://fontawesome.io/)
-- [Disqus](https://disqus.com/)
-- [Analytics](https://analytics.google.com/analytics/web/)
+- [Law & Policy](https://fonts.google.com/)
+- [Health Considerations](http://fontawesome.io/)
+- [Medical Treatment](https://disqus.com/)
+- [Education](https://analytics.google.com/analytics/web/)
 - Support Emoji
 
 ## Installation:
