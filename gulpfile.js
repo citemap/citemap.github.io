@@ -5,6 +5,7 @@ var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var cache = require('gulp-cache');
 var cp = require('child_process');
+
 var browserSync = require('browser-sync');
 
 var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
