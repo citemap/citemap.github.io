@@ -1,6 +1,6 @@
 # Gender Trends Resource Repository
 
-![](https://github.com/citemap/citemap.github.io/blob/master/assets/img/train.jpg?raw=true)
+![](https://github.com/citemap/citemap.github.io/blob/master/assets/img/Train.jpg?raw=true)
 
 ## A public repository of research sources and media on the institutional, clinical, and social aspects of gender non-conformity among children and adolescents
 
