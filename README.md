@@ -2,7 +2,8 @@
 
 ![](https://github.com/citemap/citemap.github.io/blob/master/assets/img/Train.jpg?raw=true)
 
-# sources and media on the institutional, clinical, and social dynamics affecting gender non-conforming children
+> A collection of significant research, policy, treatment and education 
+> source materials developed to assist gender non-conforming children
 
 Check the theme in action [Demo](https://artemsheludko.github.io/flexible-jekyll/)
 
