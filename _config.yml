@@ -1,15 +1,15 @@
-title: Gender Trends
+title: Cite Maps
 description: > # this means to ignore newlines until "baseurl:"
-  Gender Trends is a networked index of the documents and media that inform research, treatment, policy and education concerning gender non-conforming children and adolescents.
+  citation networks of public interest
 permalink: ':title/'
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "http://citemaps.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://citemaps.github.io/gender-trends" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter: #if your site has a twitter account, enter it here
 
-# Author Settings  
-author: Gender Trends # add your name
+# Author Settings
+author: casimir # add your name
 author-img: bird.jpg # add your photo
-about-author: citation guide # add description
+about-author: public interest research # add description
 social-twitter: # add your Twitter handle
 # social-facebook: # add your Facebook handle
 social-github: citemaps # add your Github handle
