@@ -8,11 +8,11 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: cite maps # add your name
 author-img: bird.jpg # add your photo
-about-author: "<small>citation networks<br />informing<br />public interests</small>"
+about-author: "<small>Citation Networks<br />that inform<br />Public Interests</small>"
 social-twitter: # add your Twitter handle
-# social-facebook: # add your Facebook handle
+social-facebook: # add your Facebook handle
 social-github: citemaps # add your Github handle
-# social-linkedin: # add your Linkedin handle
+social-linkedin: # add your Linkedin handle
 social-email: "submissions@citemaps.ch" # add your Email address
 
 # Build Settings
@@ -25,3 +25,4 @@ plugins:
 paginate: 3
 paginate_path: "/page/:num"
 exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
+future: true
