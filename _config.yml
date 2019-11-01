@@ -9,7 +9,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: cite maps # add your name
 author-img: bird.jpg # add your photo
-about-author: citation networks of public interests # add description
+about-author: citation networks of \n public interests # add description
 social-twitter: # add your Twitter handle
 # social-facebook: # add your Facebook handle
 social-github: citemaps # add your Github handle
@@ -17,7 +17,7 @@ social-github: citemaps # add your Github handle
 social-email: submissions@citemaps.ch # add your Email address
 
 # Build Settings
-markdown: kramdown   
+markdown: kramdown
 plugins:
   - jekyll-sitemap
   - jekyll-paginate
