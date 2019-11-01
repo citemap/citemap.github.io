@@ -57,7 +57,7 @@ gulp.task('img', function() {
     .pipe(browserSync.reload({stream:true}));
 });
 
-// Watch scss, html, img files
+// Watch scss, html, img files  - ok
 gulp.task('watch', function () {
     gulp.watch('assets/css/scss/**/*.scss', ['sass']);
     gulp.watch('assets/js/**/*.js', ['jekyll-rebuild']);
