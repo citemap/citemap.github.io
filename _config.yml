@@ -8,7 +8,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: cite maps # add your name
 author-img: bird.jpg # add your photo
-about-author: "citation network \n in the \n public interest"
+about-author: "citation network<br />in the<br />public interest"
 social-twitter: # add your Twitter handle
 # social-facebook: # add your Facebook handle
 social-github: citemaps # add your Github handle
@@ -24,6 +24,5 @@ plugins:
 
 paginate: 5
 paginate_path: "/page/:num"
-
-exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
 future: true
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
