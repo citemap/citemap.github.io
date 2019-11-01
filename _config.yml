@@ -2,8 +2,8 @@ title: Gender Trends Resource Repository
 description: > # this means to ignore newlines until "baseurl:"
   Gender Trends is a networked index of the documents and media that inform research, treatment, policy and education concerning gender non-conforming children and adolescents.
 permalink: ':title/'
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/gender-trends" # the subpath of your site, e.g. /blog
+url: "http://citemaps.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter: #if your site has a twitter account, enter it here
 
 # Author Settings
@@ -14,7 +14,7 @@ social-twitter: # add your Twitter handle
 social-facebook: # add your Facebook handle
 social-github: citemaps # add your Github handle
 social-linkedin: # add your Linkedin handle
-social-email: # add your Email address
+social-email: submissions@citemaps.ch # add your Email address
 
 # Build Settings
 markdown: kramdown
