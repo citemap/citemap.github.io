@@ -17,7 +17,7 @@ social-github: citemaps # add your Github handle
 social-email: submissions@citemaps.ch # add your Email address
 
 # Build Settings
-markdown: kramdown
+markdown: kramdown   
 plugins:
   - jekyll-sitemap
   - jekyll-paginate
