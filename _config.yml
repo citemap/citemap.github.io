@@ -8,7 +8,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: cite maps # add your name
 author-img: bird.jpg # add your photo
-about-author: "<small style=\"color:DodgerBlue;\">citation networks<br /><span style="color:darkgrey;">informing</span><br />public interests</small>"
+about-author: "<small style=\"color:DodgerBlue;\">citation networks<br /><span style=\"color:darkgrey;\">informing</span><br />public interests</small>"
 social-twitter: # add your Twitter handle
 # social-facebook: # add your Facebook handle
 social-github: citemaps # add your Github handle
