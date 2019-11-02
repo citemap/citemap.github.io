@@ -11,7 +11,7 @@ author-img: bird.jpg # add your photo
 about-author: "<small style=\"color:DodgerBlue;\">citation networks<br /><span style=\"color:darkgrey;\">informing</span><br />public interests</small>"
 social-twitter: gendertrends # add your Twitter handle
 # social-facebook: # add your Facebook handle
-social-github: citemaps # add your Github handle
+social-github: citemap # add your Github handle
 social-linkedin: # add your Linkedin handle
 social-email: "submissions@citemaps.ch" # add your Email address
 
