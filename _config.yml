@@ -3,7 +3,7 @@ description: > # this means to ignore newlines until "baseurl:"
  public interest citation networks
 permalink: ':title/'
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "http://citemaps.github.io/gender-trends" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://citemaps.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter: gendertrends #if your site has a twitter account, enter it here
 # Author Settings
 author: cite maps # add your name
@@ -11,7 +11,7 @@ author-img: bird.jpg # add your photo
 about-author: "<small style=\"color:DodgerBlue;\">citation networks<br /><span style=\"color:darkgrey;\">informing</span><br />public interests</small>"
 social-twitter: gendertrends # add your Twitter handle
 # social-facebook: # add your Facebook handle
-social-github: citemap # add your Github handle
+social-github: # add your Github handle
 social-linkedin: # add your Linkedin handle
 social-email: "submissions@citemaps.ch" # add your Email address
 
