@@ -7,6 +7,6 @@ img: bus.jpg # Add image post (optional)
 tags: [Endocrinology, pediatric, bioethics] # add tag
 ---
 
-A citation map of significant research papers showing their connections, authors and titles with links.
+Placeholder for - A citation map of significant research papers showing their connections, authors and titles with links.
 
 > get the archive here ...
