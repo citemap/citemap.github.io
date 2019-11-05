@@ -1,0 +1,6 @@
+/* Source and licensing information for the line(s) below can be found at https://www.hhs.gov/ash/oah/sites/default/themes/iia/js/oah.js. */
+(function($){$(window).load(function(){$("a.external-link").siblings("a").children("img").attr("src","/ash/oah/sites/all/themes/project_h/css/images/exit_disclaimer.png")});$(document).ready(function(){var wordStates=$(".state-list li"),svgStates=$("#states > a > path")
+function removeAllOn(){$(svgStates).attr('class','')}
+function addOnFromList(el){var svgState=$('#'+el);$('path'+svgState.selector).attr('class','on')};$(wordStates).on('mouseenter',function(){svgState=$(this).data('state');addOnFromList(svgState)});$(wordStates).on('mouseleave',function(){removeAllOn()})})})(jQuery);;
+/* Source and licensing information for the above line(s) can be found at https://www.hhs.gov/ash/oah/sites/default/themes/iia/js/oah.js. */
+;/*})'"*/

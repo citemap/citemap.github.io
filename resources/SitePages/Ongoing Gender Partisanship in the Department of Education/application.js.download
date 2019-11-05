@@ -1,0 +1,78 @@
+jQuery(function($) {
+  /* Remove scrolling suggestion when user gets it */
+
+  $('.detectScroll').on('scroll', function() {
+    $(this).addClass('var--scrolled').off('scroll')
+  })
+
+  /* Mark first word of widget titles */
+
+  function firstWord($collection) {
+    var node = $collection.contents().filter(function() { 
+      return this.nodeType === 3
+    })
+    if (node.length) {
+      var words = node[0].nodeValue.split(' ')
+      var firstWord = words.shift() + ' '
+      node[0].nodeValue = words.join(' ')
+      node.before('<span class="first-word">' + firstWord + '</span>')
+    }
+  }
+
+  $('#secondary .widget-title').each(function() {
+    firstWord($(this))
+  })
+
+  /* Style comments count bubble */
+
+  var styleCommentsBubble = setInterval(function() {
+    if ($('.entry-meta .post-comments a').find('.first-word').size() < 1) {
+      $('.entry-meta .post-comments a').each(function() { firstWord($(this)) })
+      clearInterval(styleCommentsBubble)
+    }
+  }, 500)
+
+  /* Remove article drop cap on short opening paragraphs */
+
+  if ($('.single-post').size() > 0) {
+    var firstPara = $('.single-post .entry-content > p:first-child')
+    var lineHeight = parseFloat(firstPara.css('line-height'))
+    var paraHeight = firstPara.height()
+    if (paraHeight < lineHeight * 3) {
+      firstPara.addClass('var--no-drop-cap')
+    }
+  }
+
+  /* Append addthis widget to pull quotes */
+
+  $('.epq-pull-quote').each(function () {
+    var text = $(this).text()
+    $(this).append('<div class="addthis_sharing_toolbox" data-title="' + text + '"></div>')
+  })
+
+  //* twentysixteen menu toggle function adjusted for this theme */
+
+  ;( function() {
+    var masthead, menuToggle, siteNavigation, secondaryNavigation, siteHeaderMenu;
+
+    masthead         = $( 'body' );
+    menuToggle       = masthead.find( '#menu-toggle' );
+    siteHeaderMenu   = masthead.find( '#site-header-menu, .site-header' );
+    siteNavigation   = masthead.find( '#site-navigation' );
+    secondaryNavigation = masthead.find( '.secondary-navigation' );
+
+    // Return early if menuToggle is missing.
+    if ( ! menuToggle.length ) {
+      return;
+    }
+
+    // Add an initial values for the attribute.
+    menuToggle.add( siteNavigation ).add( secondaryNavigation ).attr( 'aria-expanded', 'false' );
+
+    menuToggle.on( 'click.twentysixteen', function() {
+      $( this ).add( siteHeaderMenu ).toggleClass( 'toggled-on' );
+      $( this ).add( siteNavigation ).add( secondaryNavigation ).attr( 'aria-expanded', $( this ).add( siteNavigation ).add( secondaryNavigation ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+    } );
+  } )();
+
+})
