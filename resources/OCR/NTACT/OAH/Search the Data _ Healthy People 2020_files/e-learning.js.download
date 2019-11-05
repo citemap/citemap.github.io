@@ -1,0 +1,37 @@
+(function ($, Drupal, window, document, undefined) {
+  Drupal.behaviors.e_learning = {attach: function (context, settings) {
+
+    var toggle_chapter = function () {
+      $('.swf_link a').click(function(){
+        var id = $(this).attr('class');
+        $('.swf_nav_menu li').removeClass('active');
+        $(this).parents('li').addClass('active');
+        $('.elearning-swf').hide();
+        $('#'+id).show();
+      });
+    }
+
+    var getUrlParameter = function (sParam) {
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) {
+          return sParameterName[1];
+        }
+      }
+    }
+
+    if ($('body').hasClass('node-type-e-learning-module')) {
+      toggle_chapter();
+
+      var chapter = getUrlParameter('chapter');
+      if (chapter) {
+        $('.swf_nav_menu li').removeClass('active');
+        $('a.'+chapter).parents('li').addClass('active');
+        $('.elearning-swf').hide();
+        $('#' + chapter).show();
+      }
+    }
+  }}
+}(jQuery, Drupal, this, this.document));

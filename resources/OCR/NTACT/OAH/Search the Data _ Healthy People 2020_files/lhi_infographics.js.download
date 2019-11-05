@@ -1,0 +1,129 @@
+/**
+* When the colorbox opens, the drupal behaviors function is called again.
+* This variable is here to prevent that from breaking everything.
+*/
+var run_once = true;
+(function ($, Drupal, window, document, undefined) {
+  Drupal.behaviors.lhi_infographics = {
+  attach: function (context, settings) {
+
+  var LHITables = {
+    init: function() {
+      var AnimTable = $('#LHIanimationTable');
+
+      if(!AnimTable.length) {
+        return false;
+      }
+
+      AnimTable.hide();
+
+      $('a.accessible-version-show').on('click', function(e) {
+        e.preventDefault();
+        AnimTable.toggle();
+      });
+
+      // this seems to just throw an error, so I'm commenting it out.
+      // it it's needed, it can be put back in, but it needs something to prevent it from throwing an error here: /2020/leading-health-indicators/2020-lhi-topics/Injury-and-Violence/data
+      // this.bindEvents.call(this);
+
+    }
+  };
+
+  /**
+  * This function controls the showing and hiding of infographics by topic area (outside the colorbox).
+  * It also adds the numbers next to each category (showing how many infographics are in each expand box).
+  */
+var lhi_expand_buttons = function(){
+  var all_open = false;
+
+  $('.expand_box').hide();
+  $('.expand_button').click(function(){
+    $(this).toggleClass('open');
+    $(this).siblings('.expand_box').slideToggle();
+  });
+
+  $('#expand_all_button, #expand_all_link, #collapse_all_link').click(function(){
+    $('#expand_all_button').toggleClass('open');
+    $('#expand_all_button').siblings('h3').toggle();
+    if (all_open) {
+      $('.expand_button').removeClass('open');
+      $('.expand_box').hide();
+      all_open = false;
+    } else {
+      $('.expand_button').addClass('open');
+      $('.expand_box').show();
+      all_open = true;
+    }
+  });
+
+  $('.section_header').click(function(){
+    $(this).closest('.view-section').children('.expand_button').click();
+  });
+
+  $('.view-section > h2').each(function(){
+    var results = $(this).siblings('.expand_box').find('.views-row').length;
+    $(this).append(" <span class='black'>(" + results + ')</span>');
+  });
+};
+
+/**
+* This function controls the showing and hiding of the 'text version' of infographics (in the colorbox)
+*/
+var lhi_infographic_text = function(){
+  $('#text_version').hide();
+  $('#text_version_show').show();
+
+  /**
+  * It would be great to do this using toggle() instead of show and hide,
+  * but events called inside a colorbox automatically fire twice for some reason.
+  * So, toggle() always fires twice.  Not very useful.
+  */
+  $('#text_version_show_button').click(function(){
+    $('#text_version').show();
+    $('#text_version_show').hide();
+    $('#text_version_hide').show();
+  });
+  $('#text_version_hide_button').click(function(){
+    $('#text_version').hide();
+    $('#text_version_hide').hide();
+    $('#text_version_show').show();
+  });
+};
+
+var open_colorbox = function(){
+  var current_hash = window.location.hash.substr(1);
+  if(current_hash) {
+    var hash_target = $("[data-date="+current_hash+"]").parent("a.colorbox-node");
+    if (hash_target.length) {
+      hash_target.click();
+    }
+  }
+
+  $('a.colorbox-node').click(function(){
+    var hash_id = $(this).children('[data-date]').attr('data-date');
+    window.location.hash = hash_id;
+  });
+
+  $('#cboxPrevious').attr('title', 'Previous infographic');
+  $('#cboxNext').attr('title', 'Next infographic');
+}
+
+var track_click_in_google_analytics = function(){
+  $('a.colorbox-node').click(function() {
+    ga('send', 'event', 'Infographic', 'infographic', $(this).attr('href'));
+  });
+}
+
+if ($('body').hasClass('LHI-infographic-gallery') || $('body').hasClass('lhi_page')) {
+  if (run_once) {
+    run_once = false;
+    LHITables.init();
+    lhi_expand_buttons();
+    open_colorbox();
+    track_click_in_google_analytics();
+  }
+  // this needs to run every time a colorbox opens, so it's outside the run_once check.
+  lhi_infographic_text();
+}
+
+}}}(jQuery, Drupal, this, this.document));

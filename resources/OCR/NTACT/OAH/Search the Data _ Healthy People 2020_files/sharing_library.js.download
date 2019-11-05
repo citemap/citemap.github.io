@@ -1,0 +1,94 @@
+(function ($, Drupal, window, document, undefined) {Drupal.behaviors.sharing_library = {attach: function (context, settings) {
+
+var filter_label = $('.top_area_filter');
+
+var sharing_library_js = function() {
+  // This css is in javascript so that it's only applied if javascript is working.
+  // This allows users without javascript to still see the checkboxes.
+  // $('#edit-field-sharing-library-topics-target-id-wrapper .views-widget').css({"position":"absolute", "z-index":"5", "top":"35px", "left":"67px", "margin-top":"0px", "border-top":"none"});
+
+  filter_label.val('Showing All Topic Areas');
+
+  // prevent function duplication
+  $('#main-content').off('click', ".top_area_filter");
+  $('#main-content').on('click', ".top_area_filter", function(){
+    $('.edit-field-sharing-library-topics-target-id-wrapper .views-widget').slideToggle();
+  });
+
+  // prevent function duplication
+  $('.edit-field-sharing-library-topics-target-id-wrapper input').off();
+  $('.edit-field-sharing-library-topics-target-id-wrapper input').change(rewrite_label)
+
+  if($(".expand_button").length) {
+    $('.views-row').hide();
+    // make sure we're not duplicating the click function;
+    $(".expand_button").off();
+    $(".expand_button").click(function() {
+      $(this).toggleClass('open');
+      $('.' + $(this).attr('id')).slideToggle();
+    });
+    $('.section_header').each(function(){
+      var results = $(this).nextUntil('.section_header').length;
+      $(this).children('h2').append(" <span class='black'>(" + results + ')</span>');
+    });
+
+    $(".expand_header").off();
+    $('.expand_header').click(function(){
+      $(this).closest('.section_header').children('.expand_button').click();
+    });
+
+    var all_open = false;
+    $('#expand_all_button, #expand_all_link, #collapse_all_link').off();
+    $('#expand_all_button, #expand_all_link, #collapse_all_link').click(function(){
+      $('#expand_all_button').toggleClass('open');
+      $('#expand_all_button').siblings('h3').toggle();
+      if (all_open) {
+        $('.expand_button').removeClass('open');
+        $('.views-row').hide();
+        all_open = false;
+      } else {
+        $('.expand_button').addClass('open');
+        $('.views-row').show();
+        all_open = true;
+      }
+    });
+
+    $('.expand_button').first().click();
+  }
+
+  // set the 'filtered by' text
+  if ($('#views-exposed-form-sharing-library-list-view-ctools-context-1 .edit-field-sharing-library-topics-target-id-wrapper input:checked').length){
+    var filter_topics = [];
+    $('#views-exposed-form-sharing-library-list-view-ctools-context-1 .edit-field-sharing-library-topics-target-id-wrapper input:checked').each(function(){
+      filter_topics.push($(this).siblings('label').text());
+    });
+    $('.pane-views-attachments').after("<div class='filtered_by'><span class='bold'>Filtered by:</span> " + filter_topics.join('; ') + " </div>");
+  }
+
+  // gray out topic areas in the exposed filter which will return zero results
+  $(".form-item-field-sharing-library-topics-target-id input[type='checkbox']").each(function(){
+    if (!($.inArray($(this).attr('value'), Drupal.settings.Topics) > -1)) {
+      $(this).attr('disabled', 'true');
+      $(this).siblings('label').css('color', 'gray');
+    }
+  });
+}
+
+// Rewrite the 'Topic Area' text to show how many topic areas are selected
+var rewrite_label = function(){
+  var num_checked = $('#views-exposed-form-sharing-library-list-view-ctools-context-1 .edit-field-sharing-library-topics-target-id-wrapper input:checked').length;
+  if (num_checked == 1) {
+    filter_label.val('1 Topic Area Selected');
+  } else if(num_checked){
+    filter_label.val(num_checked + ' Topic Areas Selected');
+  } else {
+    filter_label.val('Showing All Topic Areas');
+  }
+}
+
+if ($('body').hasClass('page-healthy-people-in-action-stories-from-the-field')) {
+  sharing_library_js();
+  rewrite_label();
+}
+
+}}}(jQuery, Drupal, this, this.document));

@@ -1,0 +1,222 @@
+/**
+* When the country field is changed, the drupal behaviors function is called a second time.
+* This variable is here to prevent that from breaking everything.
+*/
+var run_once = true;
+
+(function ($, Drupal, window, document, undefined) {Drupal.behaviors.sharing_library_story_submissions = {attach: function (context, settings) {
+
+var form_buttons = function() {
+  var title_variations = ['step 1 of 3', 'step 2 of 3', 'step 3 of 3']
+  var container_ids = ['#node_sharing_library_story_submission_form_group_organization_info, #share_your_story_intro', '#node_sharing_library_story_submission_form_group_organization_work', '#node_sharing_library_story_submission_form_group_other_questions, fieldset.captcha'];
+  var next_button_labels = ['Go to step 2 of 3', 'Go to step 3 of 3', 'Submit'];
+  var current_page = 0;
+  $(container_ids[1]+', '+container_ids[2]).hide();
+  $('#edit-actions').hide();
+  $('.vertical-tabs').hide();
+  $('#form_buttons').show();
+  $('#form_page').show();
+  $('#next_page_button').click(function(){
+    if (form_validate(current_page)) {
+      $('#prev_page_button').show();
+      if (current_page < 2) {
+        $(container_ids[current_page]).hide();
+        current_page += 1;
+        $(container_ids[current_page]).show();
+        $(this).html(next_button_labels[current_page]);
+        $('#form_page').html(title_variations[current_page]);
+        $(window).scrollTop(0);
+      } else if (confirm('Are you sure you want to submit your story?')) {
+        $('#edit-workbench-moderation-state-new').val('needs_review');
+        $('#edit-submit').click();
+      }
+    } else {
+      alert("Oops! It looks like you didn't fill out a required field.");
+    }
+  });
+
+  $('#prev_page_button').click(function(){
+    $(container_ids[current_page]).hide();
+    current_page -= 1;
+    $(container_ids[current_page]).show();
+    $('#next_page_button').html(next_button_labels[current_page]);
+    $('#form_page').html(title_variations[current_page]);
+    if (current_page < 1) {
+      $(this).hide();
+    }
+    $(window).scrollTop(0);
+  });
+
+  // logic for 'reset form' button
+  $('#reset_form_button').click(function(){
+
+    $(container_ids[current_page]).find('input, textarea')
+    .removeAttr('checked')
+    .removeAttr('selected')
+    .not(':button, :submit, :reset, :hidden, :radio, :checkbox')
+    .val('');
+
+    $(container_ids[current_page]).find('select').not('#edit-field-story-year-und-0-value-year').val('_none').change();
+
+    // special cases
+    $(container_ids[current_page]).find('#edit-field-organization-address-und-0-country, #edit-field-program-address-und-0-country').val('us');
+    $(container_ids[current_page]).find('#edit-field-story-year-und-0-value-year').val(new Date().getFullYear());
+    $(container_ids[current_page]).find('#edit-field-text-demonstrate-innovati, #edit-field-text-evidence-based-, #edit-field-text-program-evaluation-, #edit-field-text-data-collected-, #edit-field-text-program-published-, #edit-field-text-program-generalizabl').hide();
+
+    $(container_ids[current_page]).find("#edit-field-accompanying-files input[value='Remove']").closest('table').remove();
+
+  });
+
+  $('#save_button').click(function(){
+    $('#edit-workbench-moderation-state-new').val('draft');
+    $('#edit-submit').click();
+  });
+
+  if (!($('#same_address').length)) {
+    $('#edit-field-program-address').before("<div class='dark_blue'><input type='checkbox' id='same_address'><span>Check this box if your Program Address and Organization Address are the same</span></div>");
+  }
+  $('#same_address').change(function(){
+    if($(this).is(':checked')) {
+      $('#edit-field-program-address-und-0-street').val($('#edit-field-organization-address-und-0-street').val());
+      $('#edit-field-program-address-und-0-additional').val($('#edit-field-organization-address-und-0-additional').val());
+      $('#edit-field-program-address-und-0-city').val($('#edit-field-organization-address-und-0-city').val());
+      $('#edit-field-program-address-und-0-province').val($('#edit-field-organization-address-und-0-province').val());
+      $('#edit-field-program-address-und-0-postal-code').val($('#edit-field-organization-address-und-0-postal-code').val());
+      $('#edit-field-program-address-und-0-country').val($('#edit-field-organization-address-und-0-country').val());
+      $('#edit-field-program-phone-und-0-value').val($('#edit-field-phone-und-0-value').val());
+      $('#edit-field-program-website-und-0-value').val($('#edit-field-user-organization-website-und-0-value').val());
+    } else {
+      $('#edit-field-program-address-und-0-street').val('');
+      $('#edit-field-program-address-und-0-additional').val('');
+      $('#edit-field-program-address-und-0-city').val('');
+      $('#edit-field-program-address-und-0-province').val('');
+      $('#edit-field-program-address-und-0-postal-code').val('');
+      $('#edit-field-program-address-und-0-country').val('us');
+      $('#edit-field-program-phone-und-0-value').val('');
+      $('#edit-field-program-website-und-0-value').val('');
+    }
+  });
+
+  /**
+  * These three listeners change the label and content of the objective dropdowns on page 2 based on whatt topic area is selected.
+  * The data being used here is coming from panels-pane--block--formblock-sharing-library-story-submission.tpl.php
+  */
+  $('#edit-field-topic-area-1-und').change(function(){
+    if($(this).val() !== '_none') {
+      $('#edit-field-objectives-for-topic-1-1 label').html($(this).children('option:selected').text());
+      var selectable = Drupal.settings.Topics[$(this).val()];
+      var select_lists = $('#edit-field-objectives-for-topic-1-1-und, #edit-field-objectives-for-topic-1-2-und, #edit-field-objectives-for-topic-1-3-und');
+      select_lists.each(function(){
+        var this_list = $(this);
+        this_list.empty();
+        this_list.append("<option value='_none'>Select an objective [optional]</option>");
+        for (var i = 0; i < selectable['ids'].length; i++) {
+          this_list.append("<option value='"+selectable['ids'][i]+"'>"+selectable['names'][i]+"</option>");
+        };
+      });
+    }
+  });
+  $('#edit-field-topic-area-2-und').change(function(){
+    if($(this).val() !== '_none') {
+      $('#edit-field-objectives-for-topic-2-1 label').html($(this).children('option:selected').text());
+      var selectable = Drupal.settings.Topics[$(this).val()];
+      var select_lists = $('#edit-field-objectives-for-topic-2-1-und, #edit-field-objectives-for-topic-2-2-und, #edit-field-objectives-for-topic-2-3-und');
+      select_lists.each(function(){
+        var this_list = $(this);
+        this_list.empty();
+        this_list.append("<option value='_none'>Select an objective [optional]</option>");
+        for (var i = 0; i < selectable['ids'].length; i++) {
+          this_list.append("<option value='"+selectable['ids'][i]+"'>"+selectable['names'][i]+"</option>");
+        };
+      });
+    }
+  });
+  $('#edit-field-topic-area-3-und').change(function(){
+    if($(this).val() !== '_none') {
+      $('#edit-field-objectives-for-topic-3-1 label').html($(this).children('option:selected').text());
+      var selectable = Drupal.settings.Topics[$(this).val()];
+      var select_lists = $('#edit-field-objectives-for-topic-3-1-und, #edit-field-objectives-for-topic-3-2-und, #edit-field-objectives-for-topic-3-3-und');
+      select_lists.each(function(){
+        var this_list = $(this);
+        this_list.empty();
+        this_list.append("<option value='_none'>Select an objective [optional]</option>");
+        for (var i = 0; i < selectable['ids'].length; i++) {
+          this_list.append("<option value='"+selectable['ids'][i]+"'>"+selectable['names'][i]+"</option>");
+        };
+      });
+    }
+  });
+
+}
+
+/**
+* This function checks to see whether or not it's okay to go to the next page of the form.
+* Specifically, it's looking for required fields which don't have a value entered into them.
+*/
+var form_validate = function(page){
+  var pages = ['node_sharing_library_story_submission_form_group_organization_info', 'node_sharing_library_story_submission_form_group_organization_work', 'node_sharing_library_story_submission_form_group_other_questions'];
+  var optional = ['edit-field-organization-address-und-0-additional', 'edit-field-user-organization-website-und-0-value', 'edit-field-program-address-und-0-additional',
+                  'edit-field-program-website-und-0-value', 'edit-field-implemented-zip-codes-und-0-value', 'edit-field-topic-area-2-und', 'edit-field-topic-area-3-und',
+                  'edit-field-objectives-for-topic-1-1-und', 'edit-field-objectives-for-topic-1-2-und', 'edit-field-objectives-for-topic-1-3-und',
+                  'edit-field-objectives-for-topic-2-1-und', 'edit-field-objectives-for-topic-2-2-und', 'edit-field-objectives-for-topic-2-3-und',
+                  'edit-field-objectives-for-topic-3-1-und', 'edit-field-objectives-for-topic-3-2-und', 'edit-field-objectives-for-topic-3-3-und',
+                  'edit-field-please-enter-associated-yo-und-0-value', 'edit-field-please-enter-associated-we-und-0-value', 'edit-field-please-enter-second-associ-und-0-value'];
+  var valid = true;
+
+  // Loop over all the inputs and text areas on the current page.
+  $('#'+pages[page]+' input, #'+pages[page]+' textarea').each(function(){
+    if ($(this).attr('type') === 'hidden') {
+      // skip 'hidden' elements entirely
+    } else {
+      // pass if it has a value, is in the optional array, is not visible, or is a file upload field.
+      if ($(this).val() || ($.inArray($(this).attr('id'), optional) > -1) || !$(this).is(':visible') || $(this).attr('type') == 'file') {
+        $(this).css('border', '1px solid #ccc')
+      } else {
+        $(this).css('border', '1px solid #F00');
+        valid = false;
+      }
+    }
+  });
+
+  // Loop over all the select lists on the current page;
+  $('#'+pages[page]+' select').each(function(){
+    // pass if it has a value other than '_none' or is in the optional array.
+    if (($(this).val() && ($(this).val() !== '_none')) || ($.inArray($(this).attr('id'), optional) > -1)) {
+      $(this).css('border', '1px solid #ccc')
+    } else {
+      $(this).css('border', '1px solid #F00');
+      valid = false;
+    }
+  });
+
+  // Loop over all the radio buttons on the current page
+  $('#'+pages[page]+' .form-radios').each(function(){
+    // pass if at least one of the radios is checked.
+    if($(this).find('input:checked').length) {
+      $(this).css('border', 'none');
+    } else {
+      $(this).css('border', '1px solid #F00');
+      valid = false;
+    }
+  });
+
+  return valid;
+}
+
+// this function solely exists to modify the color of certain chunks of text
+var color_changes = function(){
+  $('#node_sharing_library_story_submission_form_group_organization_info > h2').html("Tell us about your <span class='blue'>Organization*</span>");
+  $('#node_sharing_library_story_submission_form_group_program_info > h2').html("Tell us about your <span class='blue'>Program*</span>");
+  var markup_1 = $('#node_sharing_library_story_submission_form_group_organization_work > h2').html();
+  $('#node_sharing_library_story_submission_form_group_organization_work > h2').html(markup_1.slice(6, 77)+"<span class='black'>"+markup_1.slice(77));
+  var markup_2 = $('#node_sharing_library_story_submission_form_group_other_questions > h2').html();
+  $('#node_sharing_library_story_submission_form_group_other_questions > h2').html(markup_2.slice(6, 34)+"<span class='black'>"+markup_2.slice(34, -74)+"</span>"+markup_2.slice(-74, -7))
+}
+
+if (run_once && ($('body').hasClass('share_your_story') || $('body').hasClass('node-type-sharing-library-story-submission'))) {
+  color_changes();
+  form_buttons();
+  run_once = false;
+}
+
+}}}(jQuery, Drupal, this, this.document));

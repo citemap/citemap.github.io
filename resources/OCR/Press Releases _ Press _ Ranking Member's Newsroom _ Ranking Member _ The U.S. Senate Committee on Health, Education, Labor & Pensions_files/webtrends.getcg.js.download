@@ -1,0 +1,23 @@
+Webtrends.registerPlugin("getcg", function(dcs, pluginOptions) {
+
+	// Store up to 6 positions in the path
+    var cgPositions = Array(1, 2, 3, 4, 5, 6);
+    /* override if they want different positions or a different order*/
+    if( pluginOptions.pos){
+        gPositions = pluginOptions.pos.split(',');
+    }
+    // remove the .html from the path
+    var cgDataStrip = window.location.pathname.replace(/\.html$/, '');
+    var cgData = cgDataStrip.split('/');
+    
+    // we want the last part of the path which is the product name so keep it don't do pop
+    // cgData.pop();
+    try {
+        if ( cgData.length -1 >= cgPositions[0] ) dcs.WT.cg_n = cgData[cgPositions[0]];
+        if ( cgData.length -1 >= cgPositions[1] ) dcs.WT.cg_s = cgData[cgPositions[1]];
+	if ( cgData.length -1 >= cgPositions[2] ) dcs.WT.z_cg3 = cgData[cgPositions[2]];
+	if ( cgData.length -1 >= cgPositions[3] ) dcs.WT.z_cg4 = cgData[cgPositions[3]];
+	if ( cgData.length -1 >= cgPositions[4] ) dcs.WT.z_cg5 = cgData[cgPositions[4]];
+	if ( cgData.length -1 >= cgPositions[5] ) dcs.WT.z_cg6 = cgData[cgPositions[5]];
+    } catch (e) { }
+    });

@@ -1,0 +1,176 @@
+(function ($, Drupal, window, document, undefined) {Drupal.behaviors.topic_tabs = {attach: function (context, settings) {
+
+var topic_objectives = function() {
+  var all_open = false;
+  $('#expand_all_button').click(function(){
+    if(all_open) {
+      $(this).removeClass('open');
+      $('.expand_button, .objective-container').removeClass('open');
+      $('.expand_all_label').toggle();
+      $('div.objective_data_table').hide();
+      all_open = false;
+    } else {
+      $(this).addClass('open');
+      $('.expand_button, .objective-container').addClass('open')
+      $('.expand_all_label').toggle();
+      $('div.objective_data_table').show();
+      all_open = true;
+    }
+  });
+
+    /**
+     * expand/collapse all on label.
+     */
+    $('.expand_all_label').click(function(){
+        if(all_open) {
+            $('#expand_all_button').removeClass('open');
+            $('.expand_button, .objective-container').removeClass('open');
+            $('.expand_all_label').toggle();
+            $('div.objective_data_table').hide();
+            all_open = false;
+        } else {
+            $('#expand_all_button').addClass('open');
+            $('.expand_button, .objective-container').addClass('open')
+            $('.expand_all_label').toggle();
+            $('div.objective_data_table').show();
+            all_open = true;
+        }
+    });
+
+
+  var all_related_open = false;
+  $('#related_expand_all_button, #related_expand_all_link').click(function(){
+    if(all_related_open) {
+      $('#related_expand_all_button, .related-objectives-row, .related_expand_button').removeClass('open');
+      $('#related_expand_all_link .related_expand_all_label').toggle();
+      $('.related-objectives-content').hide();
+      all_related_open = false;
+    } else {
+      $('#related_expand_all_button, .related-objectives-row, .related_expand_button').addClass('open');
+      $('#related_expand_all_link .related_expand_all_label').toggle();
+      $('.related-objectives-content').show();
+      all_related_open = true;
+    }
+  });
+
+  $('.objective_data_table, .related-objectives-content').hide();
+  $('.expand_button, .expand_link').click(function(){
+    $(this).parents('.title_row').children('.expand_button').toggleClass('open');
+    $(this).parents('.objective-container').toggleClass('open');
+    $(this).parents('.title_row').siblings('.objective_data_table').slideToggle();
+  });
+  $('.related_expand_button').click(function(){
+    $(this).toggleClass('open');
+    $(this).parents('.related-objectives-row').toggleClass('open');
+    $(this).siblings('.related-objectives-content').slideToggle();
+  });
+  $('.related-objectives-row').click(function(event){
+    if (!$(this).hasClass('open') && !$(event.target).closest('.related_expand_button').length) {
+      $(this).children('.related_expand_button').click();
+    }
+  });
+
+  $('.icon.term, .icon.rlog').hover(function(){
+    $(this).children('.tool-tip').show();
+  }, function() {
+    $(this).children('.tool-tip').hide();
+  });
+
+  $('a.expand_link').hover(function(){
+    $(this).parents('.objective-container').addClass('gray_hover');
+  }, function() {
+    $(this).parents('.objective-container').removeClass('gray_hover');
+  });
+
+  var objectiveToggle = {
+    init: function() {
+      this.id = window.location.hash;
+
+      if(this.id.length) {
+        this.openRow.call(this);
+      }
+    },
+    openRow: function() {
+      $(this.id).click();
+    }
+  };
+
+  $(document).ready(function() {
+    objectiveToggle.init();
+  });
+}
+
+var topic_ebrs = function() {
+  if($('#ebr_header').length > 0) {
+    $('#ebr_header_link').show();
+  }
+  if($('#clin_recs').length > 0) {
+    $('#clin_recs_link').show();
+  }
+  if($('#cons_info').length > 0) {
+    $('#cons_info_link').show();
+  }
+  $('.help_link').colorbox({inline:true, width:"50%", onComplete:function(){
+    if($(this).attr('data-target')) {
+      window.location.hash = '';
+      window.location.hash = $(this).attr('data-target');
+    }
+  }});
+}
+
+var topic_overview = function() {
+  $('.expander_link').click(function() {
+    if($(this).parents('.field').hasClass('more-hidden')) {
+      $(this).parents('.field').removeClass('more-hidden');
+      $(this).siblings('.show-more').slideDown(100);
+      $(this).text('Hide');
+    }
+    else {
+      $(this).parents('.field').addClass('more-hidden');
+      $(this).siblings('.show-more').slideUp(100);
+      $(this).text('More');
+    }
+  });
+}
+
+var national_snapshots_expand_all = function() {
+  var all_open = false;
+  $('#expand_all_button, .expand_all_label').click(function(){
+    if(all_open) {
+      $('#expand_all_button').removeClass('open');
+      $('.expand_button').removeClass('open');
+      $('.expand_all_label').toggle();
+      $('div.wrapper').hide();
+      all_open = false;
+    } else {
+      $('#expand_all_button').addClass('open');
+      $('.expand_button').addClass('open');
+      $('.expand_all_label').toggle();
+      $('div.wrapper').show();
+      all_open = true;
+    }
+  });
+}
+
+var add_new_title = function() {
+  var new_span = $('h1.page-title span.new_title.New');
+  if(new_span.length) {
+    new_span.html('New');
+  }
+}
+
+if($('body').hasClass('topics')) {
+  add_new_title();
+}
+
+if ($('body').hasClass('topic_objectives')) {
+  topic_objectives();
+} else if ($('body').hasClass('topic_ebrs')) {
+  topic_ebrs();
+} else if ($('body').hasClass('topic_overview')) {
+  topic_overview();
+} else if ($('body').hasClass('page-node-national-snapshot')) {
+  national_snapshots_expand_all();
+}
+
+}}}(jQuery, Drupal, this, this.document));
