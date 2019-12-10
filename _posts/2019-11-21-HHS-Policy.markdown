@@ -7,6 +7,5 @@ img: science.png # Add image post (optional)
 tags: [HHS, health policy] # add tag
 ---
 
-Placeholder for - A citation map of agency actions that have laid the legal and institutional groundwork for pediatric GD.
+An annotated timeline of US Federal Agency activity precipitating the introduction of Gender Identity and youth Gender Non-Conformity rights and policy. 
 
-> get the archive here ...
