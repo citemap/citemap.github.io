@@ -7,5 +7,5 @@ img: science.png # Add image post (optional)
 tags: [HHS, health policy] # add tag
 ---
 
-[An annotated timeline of US Federal Agency activity](https://github.com/citemap/citemap.github.io/raw/master/resources/HHS/Milestones_Youth_GNC_2009_to_2016.pdf) precipitating the introduction of Gender Identity and youth Gender Non-Conformity rights and policy. 
+[An annotated timeline of US Federal Agency activity](https://github.com/citemap/citemap.github.io/raw/master/resources/HHS/Milestones_Youth_GNC_2009_to_2016.pdf) precipitating the legal definition and implementation of Gender Identity and youth Gender Non-Conformity rights and policy. 
 
