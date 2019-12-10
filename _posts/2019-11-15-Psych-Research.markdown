@@ -8,5 +8,3 @@ tags: [Psychology, developmental psychology, citations] # add tag
 ---
 
 Citation maps of significant research papers in psychology and psychiatry relevant to youth Gender Non-Conformity (GNC).
-
-
