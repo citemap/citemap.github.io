@@ -7,6 +7,4 @@ img: evo_med.png # Add image post (optional)
 tags: [Endocrinology, pediatric, bioethics] # add tag
 ---
 
-Placeholder for - A citation map of significant research papers showing their connections, authors and titles with links.
-
-> get the archive here ...
+Citations maps of significant research papers in Endocrinology showing their connections, authors and titles with links.
