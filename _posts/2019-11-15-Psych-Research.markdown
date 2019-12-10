@@ -6,6 +6,7 @@ description: Key articles in developmental psychology that inform the modelling,
 img: treemap.png # Add image post (optional)
 tags: [Psychology, developmental psychology, citations] # add tag
 ---
-Placeholder for - A citation map of significant research papers showing their connections, authors and titles with links.
 
-> get the archive here ...
+Citation maps of significant research papers in psychology and psychiatry relevant to youth Gender Non-Conformity (GNC).
+
+
