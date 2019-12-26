@@ -1,0 +1,155 @@
+* {
+    text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: content-box;
+    background-repeat: no-repeat;
+    transform: translate3d(0,0,0);
+}
+
+div {
+    position: absolute;
+    opacity: 0;
+}
+
+body {
+    margin: 0px;
+}
+
+#cover {
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 300px;
+    height: 250px;
+}
+
+#hotspot {
+    width: 300px;
+    height: 250px;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    background-color: #000000; /*DO NOT CHANGE*/
+}
+
+#legalText {
+    background-color: #ffffff;
+    overflow: hidden;
+    width: 300px;
+    height: 112px;
+    top: 150px;
+    left: 0px;
+    padding: 5px;
+}
+
+#burst {
+    background: url(../images/burst.jpg) no-repeat;
+    width: 450px;
+    height: 400px;
+}
+
+#topBurst {
+    background: url(../images/burst.jpg) no-repeat;
+    width: 450px;
+    height: 400px;
+}
+
+#burst2 {
+    background: url(../images/burst2.jpg) no-repeat;
+    width: 300px;
+    height: 250px;
+}
+
+#text1 {
+    background: url(../images/text1.png) no-repeat;
+    width: 275px;
+    height: 62px;
+}
+
+#text2 {
+    background: url(../images/text2.png) no-repeat;
+    width: 219px;
+    height: 114px;
+    top: 121px;
+    left: 86px;
+}
+
+#text3 {
+    background: url(../images/text3.png) no-repeat;
+    width: 223px;
+    height: 44px;
+    /* top: 102px;
+    left: 38px; */
+}
+
+#text4 {
+    background: url(../images/text4.png) no-repeat;
+    width: 315px;
+    height: 83px;
+    top: 102px;
+    left: 19px;
+}
+
+
+#references {
+    background: url(../images/references.png) no-repeat;
+    width: 300px;
+    height: 100px;
+    top: 160px;
+    left: 0px;
+}
+
+#logo {
+    background: url(../images/logo.png) no-repeat;
+    width: 258px;
+    height: 53px;
+    top: 11px;
+    left: 49px;
+}
+
+#logo2 {
+    background: url(../images/logo2.png) no-repeat;
+    width: 300px;
+    height: 200px;
+    top: 30px;
+    left: 37px;
+}
+
+#cta {
+    background: url(../images/cta.png) no-repeat;
+    width: 157px;
+    height: 35px;
+    top: 68px;
+    left: 70px;
+}
+
+#replay {
+    background: url(../images/replay.png) no-repeat;
+    top: 92px;
+    right: -2px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#FPI {
+    top: 120px;
+    left: 0;
+    background-color: #FFCE00;
+    width: 300px;
+    height: 9px;
+    color: #005070;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 9px;
+    padding: 3px 8px 5px 6px;
+    line-height: 11px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}

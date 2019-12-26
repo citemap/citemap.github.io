@@ -1,0 +1,34 @@
+window.MPT.suppressDmu = 0;
+var _roadblock_urls = [
+	"/blogs/revolutionandrevelation/78684",
+	"/rheumatology/lupus/78685",
+	"/recent-developments/hemophilia/78500",
+	"/recent-developments/breast-cancer/77431",
+	"/recent-developments/leukemia/79099",
+	"/dermatology/generaldermatology/79679",
+	"/dermatology/psoriasis/79678",
+	"/clinical-challenges/chest-sleep/82976",
+	"/clinical-challenges/chest-sleep/75763",
+	"/clinical-challenges/chest-sleep/75757",
+	"/clinical-challenges/chest-sleep/75732",
+	"/clinical-challenges/chest-sleep/75704",
+	"/hematologyoncology/leukemia/83080",
+	"/hematologyoncology/leukemia/79061",
+	"/hematologyoncology/leukemia/76574",
+	"/meetingcoverage/aacr/78951",
+	"/hematologyoncology/leukemia/74145",
+	"/hematologyoncology/leukemia/79841",
+	"/hematologyoncology/leukemia/76310",
+	"/hematologyoncology/leukemia/77046"
+];
+var _roadblock_adzones = [
+	"clinical-connection/cardio-oncology",
+	"innovations-in-medicine/type-2-diabetes",
+	"tedmed",
+	"tedmed/tedmed",
+	"yir/trelegypulm"
+];
+
+if ((_roadblock_urls.indexOf(window.location.pathname.toLowerCase()) > -1) || (_roadblock_adzones.indexOf(window.MPT.adZone) > -1)){
+  window.MPT.suppressDmu = 1;
+}

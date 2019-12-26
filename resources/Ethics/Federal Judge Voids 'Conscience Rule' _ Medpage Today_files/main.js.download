@@ -1,0 +1,141 @@
+var bannerID,stageWidth, stageHeight;
+var mainTimeline,numOfLoops = 0,loopDelay = 1;
+var isiDelayTime = 1, isiAutoScrollTime = 14;
+var epass = "&#169;2019 AbbVie Inc. and Genentech USA, Inc.<br>US-VENC-190210/October 2019";
+
+var currentCopy;
+var openLegalTextObj;
+var legalTextboxState = "closed";
+
+function exitHandler(e) {
+	var target = e.toElement || e.relatedTarget || e.target || function () { throw "Failed to attach an event target!"; }
+    console.log('clicked on',target.id)
+	switch(target.id){
+        case "bodyLink": Enabler.exit("FPI exit", "https://www.rxabbvie.com/pdf/venclexta.pdf"); break;
+        case "FPI": Enabler.exit("FPI ISI exit", "https://www.rxabbvie.com/pdf/venclexta.pdf"); break;
+        default: Enabler.exit("overall exit", "https://www.venclextahcp.com/first-line-cll.html");
+	}
+}
+function toggleLegalTextBox() {
+	var openCloseAnimationTime = 1;
+	if(legalTextboxState == "closed") {
+		legalTextObj.resize({left:0,top:0,width:stageWidth,height:stageHeight},openCloseAnimationTime);
+		legalTextboxState = "opened";
+		TweenMax.to(getElem("openCloseLineVertical"),openCloseAnimationTime,{autoAlpha:0});
+		TweenMax.to(getElem("openClose"),openCloseAnimationTime,{rotation:90});
+	} else {
+		legalTextObj.resize({left:openLegalTextObj.left,top:openLegalTextObj.top, width:openLegalTextObj.width,height:openLegalTextObj.height},openCloseAnimationTime);
+		legalTextboxState = "closed";
+		TweenMax.to(getElem("openCloseLineVertical"),openCloseAnimationTime,{autoAlpha:1});
+		TweenMax.to(getElem("openClose"),openCloseAnimationTime,{rotation:0});
+	}
+}
+function replayAnimation(){
+	mainTimeline.pause(0);
+	mainTimeline.play();
+	TweenMax.set(replay,{autoAlpha:0})
+    legalTextObj.jumpToTop();	
+}
+
+function init() {
+	console.log("INIT");
+	bannerID = document.getElementsByTagName('body')[0].id;
+	var matches = bannerID.match(/[0-9 , \.]+/g);
+	stageWidth = parseInt(matches[0]);
+	stageHeight = parseInt(matches[1]);
+	createBorder(stageWidth,stageHeight);
+	console.log("id " + bannerID, "= stageWidth", stageWidth, "stageHeight", stageHeight);
+	//create variables of each div in the HTML file
+	var array = document.getElementsByTagName("div");
+	var ii = array.length;
+	for(i = 0; i < ii; i++){
+		if(array[i].id){
+			window[array[i].id] = getElem(array[i].id);
+		} 
+	}
+	
+    legalTextObj = LegalTextbox;
+    legalTextObj.init(legalText);
+    legalTextObj.setContent(getTextData("isi"), epass);
+    legalTextObj.scrollType = "speed";
+    legalTextObj.autoscrollDelay = 6;
+    legalTextObj.scrollSpeed = 7;
+	
+	legalText.addEventListener("LEGALTEXT_CUEPOINT",cuepointVisible);
+	
+	openLegalTextObj = {
+		left:parseInt(getComputedStyle(legalText).getPropertyValue("left")),
+		top:parseInt(getComputedStyle(legalText).getPropertyValue("top")),
+		width:parseInt(getComputedStyle(legalText).getPropertyValue("width")),
+		height:parseInt(getComputedStyle(legalText).getPropertyValue("height"))
+	}
+		
+	replay.addEventListener("click",replayAnimation);
+    hotspot.addEventListener("click", exitHandler);
+    FPI.addEventListener("click", exitHandler);
+    bodyLink.addEventListener("click", exitHandler);
+
+			
+	mainTimeline = new TimelineMax({onComplete:completeTimeline, repeat:numOfLoops, repeatDelay:loopDelay});
+		
+	mainTimeline	
+		.set([
+			cover,border,legalText, burst, text3
+        ], { autoAlpha: 1 })
+        .set(topBurst, { rotation: 90, autoAlpha: .5, scale: .79, x: -77, y: -72 })
+        .set(burst, { rotation: -90, scale: .79, x: -77, y: -72 })
+        .set(text3, { scale: .39, x: 37, y: 105 })
+        .set(legalText, { top: stageHeight })
+
+        .addLabel("frame1", "+=.05")
+		.to([burst, topBurst], .50, { scaleX:.95, scaleY:1.25, x: -75, y: -72, onComplete:shineAnimation }, "frame1")
+		.to(text3, .50, { scale: 1, x: 34, y: 103 }, "frame1")
+
+        .addLabel("frame2", "+=2.25")
+		.to(text3, .50, { autoAlpha: 0 }, "frame2")
+		.to([text4,references], .50, { autoAlpha: 1 }, "frame2")
+		
+		.addLabel("frame3", "+=2.25")
+		.to([text4,references], .50, { autoAlpha: 0 }, "frame3")
+        .to(text2, .50, { autoAlpha: 1 }, "frame3")
+        .to(logo2, .50, { autoAlpha: 1 }, "frame3")
+
+        .addLabel("frame5", "+=2.50")
+        .to(legalText, .25, { top: 137 }, "frame5")
+        .to([logo2, text2, burst, topBurst], .50, { autoAlpha: 0 }, "frame5")
+        .to(burst2, .50, { autoAlpha: 1 }, "frame5")
+        .to([cta, logo, FPI, replay], .75, { autoAlpha: 1 }, "frame5")
+		
+	.pause();
+		
+	startAnimation();
+}
+
+function shineAnimation() {
+    TweenMax.to([burst], 14, { rotation: 90, transformOrigin: "50% 50%", ease: Linear.easeNone }, "frame2")
+    TweenMax.to([topBurst], 14, { rotation: -90, transformOrigin: "50% 50%", ease: Linear.easeNone }, "frame2")
+}
+
+function cuepointVisible(e){
+	//sample legalText listener
+	console.log("CUE POINT VISIBLE, id:" + e.detail.id);
+}
+
+function startAnimation() {
+	console.log("startAnimation duration:",mainTimeline.duration());
+	mainTimeline.play();
+}
+function completeTimeline(){
+	console.log("completeTimeline");
+	legalTextObj.autoscroll();
+}
+function animationCompleted() {
+	console.log("animationCompleted");
+	TweenMax.to(replay,2,{autoAlpha:1})
+}
+function isiInterrputed() {
+	console.log("isiInterrputed");
+	if(mainTimeline.isActive() == false) {
+		TweenMax.to(replay,2,{autoAlpha:1})
+	}
+}

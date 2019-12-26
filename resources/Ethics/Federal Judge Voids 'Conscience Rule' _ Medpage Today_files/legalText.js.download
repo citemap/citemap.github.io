@@ -1,0 +1,166 @@
+﻿
+function getCSS() {
+    var str = ""
+    switch (bannerID) {
+        case "dim160x600":
+        case "dim300x250":
+        case "dim300x600":
+        case "dim728x90":
+        default:
+            str +=
+                "span.isi {font-size:11px; line-height:1em; }" +
+                "h1 {font-size:13px; }" +
+                "h2 {font-size:11px; }" +
+                "#legalTextHeaderText{font-size:14px; padding:6px 7px; }" +
+                "#legalTextFooterText{font-size:10px; padding:2px 7px; }";
+
+    }
+
+    str +=
+        "span.isi {font-family: 'Open Sans', sans-serif; color:#000000; font-weight:400; text-align:left; font-size:12px; line-height:13px; }" +
+        "header { font-family: 'Open Sans', sans-serif;  color:#005070; font-weight:700; font-size:12px; line-height:13px; }" +
+        "subheader {font-family: 'Open Sans', sans-serif;   color:#005070; font-weight:700; font-size:12px; }" +
+        "subheader2 {font-family: 'Open Sans', sans-serif;   color:#005070; font-weight:700; font-size:12px; display: block; margin-block-end:5px; margin-inline-start:0px; margin-inline-end:0px; }" +
+        "isiSup { font-family: 'Open Sans', sans-serif;  font-size: 7px; vertical-align:super; line-height:0.5em; }" +
+
+        ".top{margin-top:0!important;}" +
+        ".red{color:#005070; font-weight:700;font-size:12px;}" +
+        "b.isi, b.ind  { font-weight:700; }" +
+        "ul {  padding-left: 15px; margin: 0px; }" +
+        ".listStyle {color: #000;} " +
+        ".listStyle p {color: #000; margin-top: 2px !important; margin-bottom: 2px !important;}" +
+        "a.legalTextLink:link, a.legalTextLink:visited  {color:#005070; text-decoration:underline; }" +
+        "a.legalTextLink:hover  { color:#005070; text-decoration:underline; }" +
+
+        "#legalTextHeader{font-family: 'Open Sans', sans-serif; background-color:#FFF; color:#005070; font-weight: 700; }" +
+        "#legalTextHeaderText{font-size:12px; padding:5px 8px 5px 6px; line-height:13px; text-decoration:none; }" +
+        "a.legalTextHeaderText:link,a.legalTextHeaderText:visited { color: #ffffff; }" +
+        "a.legalTextHeaderText:hover { color: #ffffff; text-decoration: none; }" +
+        "a#FPILink {text-decoration:none; color:#005070; }" +
+        "";
+    return str;
+}
+
+
+var legalTextID;
+function getTextData(txtID) {
+    legalTextID = txtID;
+    switch (txtID) {
+        case "ind": return { id: txtID, stopStyle: null, css: getCSS() }; break;
+        case "isi": return { id: txtID, header: getHeaderText(), body: isiText, stopStyle: "bottom", css: getCSS() }; break;
+    }
+}
+function getHeaderText() {
+    switch (bannerID) {
+        default: return "<header>Indication and Important Safety Information</header>";
+    }
+}
+
+
+
+var isiText =
+
+    "<subheader>Indication</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>VENCLEXTA is indicated for the treatment of adult patients with chronic lymphocytic leukemia (CLL) or small lymphocytic lymphoma (SLL).</p></li>" +
+    "</ul>" +
+    "<br>" +   
+
+    "<subheader>Important Safety Information</subheader>" +
+    "<br>" +
+    "<br>&nbsp;" +  
+
+    "<subheader>Contraindication</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Concomitant use of VENCLEXTA with <i>strong</i> CYP3A inhibitors at initiation and during ramp-up phase is contraindicated in patients with CLL/SLL due to the potential for increased risk of tumor lysis syndrome (TLS).</p></li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader2>Tumor Lysis Syndrome</subheader2>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Tumor lysis syndrome, including fatal events and renal failure requiring dialysis, has occurred in patients with high tumor burden when treated with VENCLEXTA. </li>" +
+    "<li><p>In patients with CLL who followed the current (5 week) dose ramp-up and the TLS prophylaxis and monitoring measures, the rate of TLS was 2% in the VENCLEXTA CLL monotherapy studies. The rate of TLS remained consistent with VENCLEXTA in combination with obinutuzumab or rituximab. With a 2- to 3-week dose ramp-up and higher starting dose in patients with CLL/SLL, the TLS rate was 13% and included deaths and renal failure. </li>" +
+    "<li><p>VENCLEXTA poses a risk for TLS at initiation and during the ramp-up phase. Changes in blood chemistries consistent with TLS that require prompt management can occur as early as 6 to 8 hours following the first dose of VENCLEXTA and at each dose increase. </li>" +
+    "<li><p>Patients should be assessed for TLS risk, including evaluation of tumor burden and comorbidities, and should receive appropriate prophylaxis for TLS, including hydration and anti-hyperuricemics. Reduced renal function further increases the risk. Monitor blood chemistries and manage abnormalities promptly. Interrupt dosing if needed. Employ more intensive measures (IV hydration, frequent monitoring, hospitalization) as overall risk increases. </li>" +
+    "<li><p>Concomitant use of VENCLEXTA with strong or moderate CYP3A inhibitors or P-gp inhibitors may increase the risk of TLS at initiation and during the ramp-up phase, and requires dose adjustment due to increases in VENCLEXTA exposure. </li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader>Neutropenia</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>In patients with CLL, Grade 3 or 4 neutropenia developed in 63% to 64% of patients and Grade 4 neutropenia developed in 31% to 33% of patients treated with VENCLEXTA in combination and monotherapy studies. Febrile neutropenia occurred in 4% to 6% of patients treated with VENCLEXTA in combination and monotherapy studies. </li>" +
+    "<li><p>Monitor complete blood counts throughout the treatment period. Interrupt dosing or reduce dose for severe neutropenia. Consider supportive measures including antimicrobials for signs of infection and use of growth factors (e.g., G-CSF).</li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader>Infections</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Fatal and serious infections such as pneumonia and sepsis have occurred in patients treated with VENCLEXTA. Monitor patients closely for signs and symptoms of infection and treat promptly. Withhold VENCLEXTA for Grade 3 and higher infection. </li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader>Immunization</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Do not administer live attenuated vaccines prior to, during, or after treatment with VENCLEXTA until B-cell recovery occurs. Advise patients that vaccinations may be less effective.</li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader>Embryo-Fetal Toxicity</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>VENCLEXTA may cause embryo-fetal harm when administered to a pregnant woman. Advise females of reproductive potential to avoid pregnancy during treatment. </li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader2>Increased Mortality in Patients with Multiple Myeloma when VENCLEXTA is Added to Bortezomib and Dexamethasone</subheader2>" +
+    "<ul class='listStyle'>" +
+    "<li><p>In a randomized trial (BELLINI; NCT02755597) in patients with relapsed or refractory multiple myeloma, the addition of VENCLEXTA to bortezomib plus dexamethasone, a use for which VENCLEXTA is not indicated, resulted in increased mortality. Treatment of patients with multiple myeloma with VENCLEXTA in combination with bortezomib plus dexamethasone is not recommended outside of controlled clinical trials. </li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader>Adverse Reactions</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p><b>In patients with CLL receiving combination therapy with obinutuzumab,</b> serious adverse reactions were most often due to febrile neutropenia and pneumonia (5% each). The most common adverse reactions (≥20%) of any grade were neutropenia (60%), diarrhea (28%), and fatigue (21%). </li>" +
+    "<li><p><b>In patients with CLL receiving combination therapy with rituximab,</b> the most frequent serious adverse reaction (≥5%) was pneumonia (9%). The most common adverse reactions (≥20%) of any grade were neutropenia (65%), diarrhea (40%), upper respiratory tract infection (39%), fatigue (22%), cough (22%), and nausea (21%). </li>" +
+    "<li><p><b>In patients with CLL/SLL receiving monotherapy,</b> the most frequent serious adverse reactions (≥5%) were pneumonia (9%), febrile neutropenia (5%), and sepsis (5%). The most common adverse reactions (≥20%) of any grade were neutropenia (50%), diarrhea (43%), nausea (42%), upper respiratory tract infection (36%), anemia (33%), fatigue (32%), thrombocytopenia (29%), musculoskeletal pain (29%), edema (22%), and cough (22%).</li>" +
+
+    "</ul>" +
+
+    "<br>" +
+    "<subheader>Drug Interactions</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Concomitant use with a strong or moderate CYP3A inhibitor or a P-gp inhibitor increases VENCLEXTA exposure, which may increase VENCLEXTA toxicities, including the risk of TLS. Adjust VENCLEXTA dosage and closely monitor patients for signs of VENCLEXTA toxicities. Resume the VENCLEXTA dosage that was used prior to concomitant use of a strong or moderate CYP3A inhibitor or a P-gp inhibitor 2 to 3 days after discontinuation of the inhibitor.</li>" +
+    "<li><p>Patients should avoid grapefruit products, Seville oranges, and starfruit during treatment as they contain inhibitors of CYP3A. </li>" +
+    "<li><p>Avoid concomitant use of strong or moderate CYP3A inducers. </li>" +
+    "<li><p>Avoid concomitant use of VENCLEXTA with a P-gp substrate. If concomitant use is unavoidable, separate dosing of the P-gp substrate at least 6 hours before VENCLEXTA. </li>" +
+    "<li><p>Monitor international normalized ratio (INR) closely in patients receiving warfarin. </li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader>Lactation</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Advise nursing women to discontinue breastfeeding during treatment with VENCLEXTA. </li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader2>Females and Males of Reproductive Potential</subheader2>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Advise females of reproductive potential to use effective contraception during treatment with VENCLEXTA and for at least 30 days after the last dose.</li>" +
+    "<li><p>Based on findings in animals, male fertility may be compromised by treatment with VENCLEXTA. </li>" +
+    "</ul>" +
+    "<br>" +
+
+    "<subheader>Hepatic Impairment</subheader>" +
+    "<ul class='listStyle'>" +
+    "<li><p>Reduce the dose of VENCLEXTA for patients with severe hepatic impairment (Child-Pugh C); monitor these patients more closely for signs of toxicity. No dose adjustment is recommended for patients with mild (Child-Pugh A) or moderate (Child-Pugh B) hepatic impairment. </li>" +
+    "</ul>" +
+
+    "<p>VENCLEXTA<sup>&#174;</sup> is a registered trademark of <br>AbbVie Inc.</p>" +
+    "<p>GAZYVA<sup>&#174;</sup> is a registered trademark of Genentech, Inc.</p>" +
+
+    "<p>Please see full <a href='javascript:foo()' class='legalTextLink' id='bodyLink'>Prescribing Information</a>.</p>" +
+
+    "<p><b>Reference: </b>" +
+    "<br><b>1.</b> VENCLEXTA Prescribing Information." +
+
+
+    "<p><span id='epass' /></p>"

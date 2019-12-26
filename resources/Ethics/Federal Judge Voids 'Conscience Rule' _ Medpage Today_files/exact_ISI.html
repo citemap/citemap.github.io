@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://s0.2mdn.net/ads/richmedia/studio/pv2/60965781/20181214114853241/exact_ISI.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="gwd:studio-creative-association" content="acct=60006050;adv=60056452;camp=60137456;cr=60819356;assets={68952573,68932442,69085628,69085625,69196728,68932403,68952567,68932439,68952594,67809765,69170570,69108453,68952576,};">
+  <style type="text/css">
+    html, body {
+      font-family: 'Open Sans Regular', Arial;
+      background-color: white;
+      color: black;
+      margin: 0;
+    }
+
+    #isi {
+      height: 100vh;
+      overflow: auto;
+    }
+
+    h1 {
+      font-size: 10px;
+      line-height: 16px;
+      margin: 0;
+    }
+
+    p {
+      font-size: 10px;
+      line-height: 14px;
+      margin: 0 0 5px 0;
+    }
+
+    small {
+      display: block;
+      font-size: 6.5px;
+      line-height: 10px;
+      margin: 0 0 5px 0;
+    }
+
+  </style>
+</head>
+
+<body class=" hasGoogleVoiceExt">
+  <div id="isi" style="">
+    <h1>PRODUCT INFORMATION</h1>
+    <p>Cologuard is intended for adults 50 and older at average risk for colorectal cancer.</p>
+    <p>Cologuard is not for everyone; not for high risk individuals, including those with a family history of colorectal cancer, a personal history of colorectal cancer or advanced adenoma, IBD and certain hereditary syndromes.</p><p>Cologuard is not a replacement for diagnostic colonoscopy.</p><p>Cologuard results should be interpreted with caution as false positives and false negatives do occur.</p><p>Cologuard performance in repeat testing has not been evaluated. Rx only.</p><p><strong>REFERENCE:</strong>
+Imperiale TF, Ransohoff DF, Itzkowitz SH, et al. Multitarget stool DNA testing for colorectal-cancer screening. N Engl J Med. 2014 Apr 3;370(14):1287-1297.</p>
+    <img src="./exact_logo.png" width="71" height="18" alt="">
+    <small>Cologuard is a registered trademark of Exact Sciences Corporation. ©2018 Exact Sciences Corporation. All rights reserved. US.CG.1202-1 (v1.2) - September 2018</small>
+  </div>
+
+  <script>
+    var options = {
+      delay: 1000 /* in milliseconds */,
+      scrollSpeed: {
+        pixels: 1 /* pixels per frame */,
+        interval: 30 /* milliseconds per frame */
+      }
+    }
+
+    var isi = document.getElementById('isi');
+    var height = getHeight(isi)
+    var paused = false;
+    var intervalId;
+
+    startScroll()
+
+    var lastScrollTop = 0;
+    isi.addEventListener('scroll', function() {
+      var st = this.scrollTop;
+      if (st < lastScrollTop) {
+        clearInterval(intervalId);
+      }
+      lastScrollTop = st;
+    });
+
+    function startScroll() {
+      setTimeout(function() {
+        scroll();
+      }, options.delay);
+    }
+
+    function scroll() {
+      intervalId = setInterval(function() {
+        if (!paused) {
+          var pos = isi.scrollTop;
+          console.log(pos)
+            isi.scrollTop = pos + options.scrollSpeed.pixels;
+            if (isi.scrollTop === height - isi.clientHeight - 4) {
+              clearInterval(intervalId);
+            }
+        }
+      }, options.scrollSpeed.interval);
+    }
+
+    function getHeight(element) {
+      var height = 0
+      element.style.height = 'auto'
+      height = element.clientHeight
+      element.style.height = ''
+      return height
+    }
+  </script>
+
+<div id="vidyowebrtcscreenshare_is_installed"></div></body></html>

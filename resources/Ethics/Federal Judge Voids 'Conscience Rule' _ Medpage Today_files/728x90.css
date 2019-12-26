@@ -1,0 +1,291 @@
+body.show-isi #animation,body.show-isi 
+#pi{display:none}
+#a{cursor:pointer}
+#above-isi,div{position:absolute}
+#isi, indication, a,body{color:#000000;}
+body{font-family:'glypha_65bold', Times, "Times New Roman", serif,Arial;margin:0;font-size:10px}
+body.show-isi #scrolling-isi{margin:0;border:0}
+body.show-isi #scrolling-isi #isi-container #scrolling-indication #indication-container{overflow:visible;border:0}
+body.show-isi #scrolling-isi #isi-scroller #indication-scroller{display:none;border:0}
+body.show-isi #scrolling-isi #isi #scrolling-indication #indication{background-color:#fff}
+body.show-isi #wrapper{border-width:0;overflow:visible}
+
+a{text-decoration:underline}
+
+.sprite{background:url(sprite.png) no-repeat}
+
+
+
+
+@font-face {
+    font-family: 'glypha_65bold';
+    src: 
+         url('glypha-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'glypha_45_lightregular';
+    src: 
+         url('glypha-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+.divCommon{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 728px;
+    height: 90px;
+}
+
+
+
+
+
+
+
+
+#background{
+    top: 0px;
+    left: 0px;
+	width: 728px;
+	height:90px;
+	z-index:1;
+	background: url(background.jpg) no-repeat;
+	opacity:1;
+}
+
+
+#frm1{
+    top: 0px;
+    left: 208px;
+	width: 268px;
+	height:90px;
+	z-index:10;
+	background: url(text1.png) no-repeat;
+	opacity:1;
+}
+
+
+
+
+#frm2{
+    top: 0px;
+    left: 208px;
+	width: 268px;
+	height:90px;
+	z-index:10;
+	background: url(text2.png) no-repeat;
+	opacity:1;
+}
+
+
+#frm3{
+    top: 0px;
+    left: 208px;
+	width: 268px;
+	height:90px;
+	z-index:10;
+	background: url(text3.png) no-repeat;
+	opacity:1;
+}
+
+
+#frm4{
+    top: 0px;
+    left: 208px;
+	width: 268px;
+	height:90px;
+	z-index:10;
+	background: url(cta.png) no-repeat;
+	opacity:1;
+}
+
+
+#terms{
+    top: -18px;
+    left: 208px;
+	width: 268px;
+	height:90px;
+	z-index:10;
+	background: url(terms.png) no-repeat;
+	opacity:1;
+}
+
+
+#terms_link {
+	top:45px; 
+	left:248px;
+	width:180px;
+	height:20px;
+	cursor:pointer;
+	z-index:200;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* change 726 to 298 when the isi is in the correct position and size... */
+#wrapper{width:726px;height:88px;border:1px solid #666;overflow:hidden;background:#fff; opacity:0;}
+
+
+
+
+#FullPI {
+	width: 402px;
+	height: 18px;
+	position: absolute;
+	z-index: 501;
+	top: 71px;
+	left: 65px;
+	line-height: 11px;
+	cursor: pointer;
+	background-color: #transparent;
+}
+
+
+
+
+#medwatch {
+	font-family:'glypha_65bold', Arial; 
+	font-weight:normal; 
+	color:#1e44ff;
+	text-decoration:underline; 
+	font-weight:normal; 
+	letter-spacing:-0.3px;
+	cursor:pointer;
+}
+
+#PIlink {
+	
+	font-weight:normal; 
+	color:#ea148c;
+	text-decoration:underline; 
+	font-weight:normal; 
+	letter-spacing:-0.3px;
+	cursor:pointer;
+}
+	
+
+
+
+
+
+
+
+#scrolling-isi{margin: 0px 0px 0px 9px;  width:243px;height:56px; border-bottom:none; bottom: 1px; left:474px; z-index:30; }
+#scrolling-isi div{-webkit-tap-highlight-color:transparent;outline:0;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+#scrolling-isi #isi-container{padding-top:0px;height:100%;width:100%;overflow-y:auto;overflow-x:hidden;background:#fff}
+
+#isi-container::-webkit-scrollbar { display: block; }
+#isi-container::-webkit-scrollbar { width: 8px; /* for vertical scrollbars */ height: 2px;  for horizontal scrollbars */ } 
+#isi-container::-webkit-scrollbar-track { background: url(scroll_track1.png) no-repeat;
+	opacity:1; background-size: 9px 52px;  }
+#isi-container::-webkit-scrollbar-thumb { background: url(scroll_tracker.png) no-repeat;
+	opacity:1;  }
+
+
+
+
+
+
+#isi{font-size:7px;padding-left:1px;padding-right:3px;line-height:1.05; padding-bottom:30px; margin-top:-6px;}
+#isi #isi h3,#isi p a,#isi p.isi-link{color:#000000;}
+#isi stronga { font-family:'glypha_65bold', Times, "Times New Roman", serif, Arial; color:#000000;  }
+#isi h2, #indication h2{color:#ea148c; font-size:12px;margin:0 auto -6px; padding-top:5px; letter-spacing:-0.5px; font-weight:normal;}
+#isi h3, #indication h3{color:#ea148c; margin-bottom:-14px;font-size:11px;}
+#isi h4{font-size:7pt;margin-bottom:-15px;margin-top:1px}
+#isi p{margin-bottom:-5px; font-family:'glypha_45_lightregular', Times, "Times New Roman", serif, Arial, sans-serif; font-size:11px;line-height:13px}
+
+#isi p.right-align{text-align:right}
+#isi .isi-footer{margin-top:-20px;font-family:Arial, sans-serif; text-align:left;font-size:9px;margin-bottom:5px; left:48px; position:relative; width:180px;}
+
+#isi section.bullet p{padding-left:6px; margin-bottom:-5px;}
+#isi section.bullet .bull{margin-top:8px;color:#1baebb; font-size:10px;}
+#isi section.bullet .bull:first-of-type{margin-top:-1px}
+#isi section.bullet {padding-left:0px; margin-bottom:15px;}
+
+
+
+
+#indication section.bullet p{padding-left:6px; margin-bottom:0px;}
+#indication section.bullet .bull{color:#1baebb}
+#indication section.bullet .bull:first-of-type{margin-top:0px}
+
+
+#general_exit {
+	top: 0px;
+	left: 0px;
+	width: 476px;
+	height: 90px;
+	cursor: pointer;
+	z-index: 100;
+}
+
+#logo_exit {
+	height:69px;
+	width:209px; 
+	top:0px;
+	left:0px;
+	z-index:150;
+	cursor:pointer;
+}
+
+
+#frame1_exit {
+	height:78px;
+	width:479px; 
+	top:0px;
+	left:0px;
+	z-index:151;
+	cursor:pointer;
+}
+	
+
+	
+	
+#logo {
+	height:23px;
+	width:40px;
+	margin-top:20px;
+	left:0px;
+	background: url(pfizer_logo.jpg) no-repeat;
+	position:relative;
+	}
+
+
+#ISI_FullPI {
+	font-size:9px;
+	font-family:'Arial Black', Arial, sans-serif;
+	font-weight:bold;
+	cursor:pointer;
+}
+	
+
+align_right1 {
+	text-align: right;
+}
