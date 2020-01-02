@@ -1,1 +1,0 @@
-(function($){Drupal.behaviors.fixColorboxButtons={attach:function(context,settings){setTimeout(function(){if($("#colorbox",context).length){$('#cboxPrevious',context).attr("aria-label","Previous");$('#cboxNext',context).attr("aria-label","Next");$('#cboxSlideshow',context).attr("aria-label","Slideshow");}},1000);}}})(jQuery);;/*})'"*/
