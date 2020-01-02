@@ -1,0 +1,201 @@
+(function ($) {
+
+  /**
+   * The recommended way for producing HTML markup through JavaScript is to write
+   * theming functions. These are similiar to the theming functions that you might
+   * know from 'phptemplate' (the default PHP templating engine used by most
+   * Drupal themes including Omega). JavaScript theme functions accept arguments
+   * and can be overriden by sub-themes.
+   *
+   * In most cases, there is no good reason to NOT wrap your markup producing
+   * JavaScript in a theme function.
+   */
+  Drupal.theme.prototype.omegaSamhsaExampleButton = function (path, title) {
+    // Create an anchor element with jQuery.
+    return $('<a href="' + path + '" title="' + title + '">' + title + '</a>');
+  };
+
+  /**
+   * Behaviors are Drupal's way of applying JavaScript to a page. In short, the
+   * advantage of Behaviors over a simple 'document.ready()' lies in how it
+   * interacts with content loaded through Ajax. Opposed to the
+   * 'document.ready()' event which is only fired once when the page is
+   * initially loaded, behaviors get re-executed whenever something is added to
+   * the page through Ajax.
+   *
+   * You can attach as many behaviors as you wish. In fact, instead of overloading
+   * a single behavior with multiple, completely unrelated tasks you should create
+   * a separate behavior for every separate task.
+   *
+   * In most cases, there is no good reason to NOT wrap your JavaScript code in a
+   * behavior.
+   *
+   * @param context
+   *   The context for which the behavior is being executed. This is either the
+   *   full page or a piece of HTML that was just added through Ajax.
+   * @param settings
+   *   An array of settings (added through drupal_add_js()). Instead of accessing
+   *   Drupal.settings directly you should use this because of potential
+   *   modifications made by the Ajax callback that also produced 'context'.
+   */
+  Drupal.behaviors.omegaSamhsaExampleBehavior = {
+    attach: function (context, settings) {
+      // By using the 'context' variable we make sure that our code only runs on
+      // the relevant HTML. Furthermore, by using jQuery.once() we make sure that
+      // we don't run the same piece of code for an HTML snippet that we already
+      // processed previously. By using .once('foo') all processed elements will
+      // get tagged with a 'foo-processed' class, causing all future invocations
+      // of this behavior to ignore them.
+      $('.some-selector', context).once('foo', function () {
+        // Now, we are invoking the previously declared theme function using two
+        // settings as arguments.
+        var $anchor = Drupal.theme('omegaSamhsaExampleButton', settings.myExampleLinkPath, settings.myExampleLinkTitle);
+
+        // The anchor is then appended to the current element.
+        $anchor.appendTo(this);
+      });
+    }
+  };
+
+  Drupal.behaviors.newsFilterPlaceholders =  {
+	    attach: function(context, settings) {
+	      $('input#edit-field-release-date-value-min-datepicker-popup-0').attr("placeholder", "Start Date");
+	      $('input#edit-field-release-date-value-max-datepicker-popup-0').attr("placeholder", "End Date");
+	    }
+  };
+
+  Drupal.behaviors.samhsaDoubleSearch = {
+		  attach: function (context, settings) {
+			  var gsa_site		= $('#gsa_sitevar');
+			  $('.collectionator').once('bindtoggle6').bind('click', function(e) {
+				  gsa_site.val( $( "[name='collectionator']:checked" ).val() );
+			  });
+		  }
+  };
+
+  Drupal.behaviors.samhsaDoubleSearch2 = {
+		  attach: function (context, settings) {
+			  var gsa_site		= $('#gsa_sitevar2');
+			  $('.collectionator2').once('bindtoggle7').bind('click', function(e) {
+				  gsa_site.val( $( "[name='collectionator2']:checked" ).val() );
+			  });
+		  }
+  };
+
+  // Add behaviors to mobile header gadgetry
+
+  Drupal.behaviors.samhsaNavSlide = {
+		  attach: function (context, settings) {
+			  var trig 			= $('#top-nav-spoof-icon');
+			      triga			= $('#top-nav-spoof-icon a');
+				  nav 			= $('.nav-actual');
+				  blk			= $('#block-block-2');
+
+			  $(trig).once('bindtoggle4').bind('click', function(e) {
+					e.preventDefault();
+					nav.slideToggle();
+					blk.slideToggle();
+					$(trig).toggleClass('nav_bg active');
+					if ($(trig).hasClass('active')) {
+						$(triga).text('+');
+					} else { $(triga).text('-'); }
+			  });
+		  }
+	};
+
+	Drupal.behaviors.samhsaMenuTop = {
+		  attach: function (context, settings) {
+			  var pull 			= $('#pull');
+				  menu 			= $('#hamburger-menu ul');
+				  menuHeight	= menu.height();
+
+			  $(pull).once('bindtoggle').bind('click', function(e) {
+					e.preventDefault();
+					menu.slideToggle();
+					$(pull).toggleClass('nav_bg active');
+					// if ($(pull).hasClass('active')) {
+					// 	$(pull).attr('style', '');
+					// } else { $(pull).attr('style', 'background-color: #8a180e'); }
+			  });
+			  $(window).resize(function(){
+	        		var w = $(window).width();
+	        		if(w > 320 && menu.is(':hidden')) {
+	        			menu.removeAttr('style');
+	        		}
+	    	  });
+		  }
+	};
+
+	Drupal.behaviors.samhsaSearchTop = {
+		  attach: function (context, settings) {
+			  var pull2 	= $('#pull2');
+			  sbox	 	= $('#search_toggle_wrapper');
+			  $(pull2).once('bindtoggle2').bind('click', function(e) {
+					e.preventDefault();
+					$(sbox).slideToggle();
+                    $("#bodySearchAll").slideToggle();
+					$(pull2).toggleClass('nav_bg active');
+          $('#top-logo-wrapper').toggleClass('search');
+			  });
+			  $(window).resize(function(){
+	        		var w = $(window).width();
+	        		if(w > 320 && menu.is(':hidden')) {
+	        			menu.removeAttr('style');
+	        		}
+	    	  });
+		  }
+	};
+
+
+	// Add behaviors to mobile footer gadgetry
+
+	  Drupal.behaviors.samhsaFootNavSlide = {
+			  attach: function (context, settings) {
+				  var trig_ft 			= $('#foot-nav-toggle-icon');
+				      triga_ft			= $('#foot-nav-toggle-link');
+					  nav_ft 			= $('.foot-nav-actual');
+
+				  $(trig_ft).once('bindtoggle5').bind('click', function(e) {
+						e.preventDefault();
+						nav_ft.slideToggle();
+						$(trig_ft).toggleClass('nav_bg active');
+						if ($(trig_ft).hasClass('active')) {
+							$(triga_ft).text('+');
+						} else { $(triga_ft).text('-'); }
+				  });
+			  }
+		};
+
+  // Have links in the export header and footer open in new tab
+  Drupal.behaviors.headerOnlyNewTabForLinks =  {
+    attach: function (context, settings) {
+       $('.page-header-only',context).once('bindtoggle8').bind('click', function(e) {
+          $('a').attr('target','_blank');
+       });
+    }
+  };
+  Drupal.behaviors.headerOnlyNewTabForLinks =  {
+    attach: function (context, settings) {
+       $('.page-header-only-menu',context).once('bindtoggle12').bind('click', function(e) {
+          $('a').attr('target','_blank');
+       });
+    }
+  };
+  Drupal.behaviors.footerOnlyNewTabForLinks =  {
+    attach: function (context, settings) {
+       $('.page-footer-only',context).once('bindtoggle9').bind('click', function(e) {
+          $('a').attr('target','_blank');
+       });
+    }
+  };
+  Drupal.behaviors.footerOnlyNewTabForSearch =  {
+    attach: function (context, settings) {
+       $('.page-header-only #search_box, .page-header-only #searchSAMHSA',context).once('bindtoggle10').bind('click', function(e) {
+          $('form').attr('target','_parent');
+       });
+       $('.page-header-only-menu #search_box, .page-header-only-menu #searchSAMHSA',context).once('bindtoggle11').bind('click', function(e) {
+          $('form').attr('target','_parent');
+       });
+    }
+  };
+})(jQuery);

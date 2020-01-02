@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)https://www.tr4y.org/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Transition Resources For Youth</title>
+<link rel="stylesheet" media="all" type="text/css" href="./Transition Resources For Youth_files/tr4y.css">
+<link rel="stylesheet" media="all" type="text/css" href="./Transition Resources For Youth_files/boxes1.css">
+<script src="./Transition Resources For Youth_files/nav.js.download"></script>
+
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="./Transition Resources For Youth_files/bullets.css">
+<!-- include jQuery library -->
+<script type="text/javascript" src="./Transition Resources For Youth_files/jquery.min.js.download"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="./Transition Resources For Youth_files/jquery.tn3.min.js.download"></script>
+
+ <script type="text/javascript" src="./Transition Resources For Youth_files/jquery.timers.js.download"></script>
+ <script type="text/javascript" src="./Transition Resources For Youth_files/jquery.autoScroller.js.download"></script>
+
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		var tn1 = $('.mygallery').tn3({
+		    autoplay: true,
+		    skinDir:"skins",
+		    delay:4000,
+		    skin:["tn3e", "bullets"],
+		    imageClick:"url",
+		    width: 400,
+		    height: 300,
+		    image:{
+			transitions:[{
+			    type:"blinds",
+			    duration:300
+			    },
+			    {
+			    type:"grid",
+			    duration:160,
+			    gridX:9,
+			    gridY:7,
+			    easing:"easeInCubic",
+			    sort:"circle"
+			    },{
+			    type:"slide",
+			    duration:430,
+			    easing:"easeInOutExpo"
+			    }]
+		    },
+		    thumbnailer: {
+			align: 0,
+			mode: "bullets"       
+		    }
+		    });
+	});
+	
+function show_resource(resource_id) {
+var popurl="view.php?resource_id=" + resource_id + "&keywords="; // + "&user_id=" + user_id;
+var left = (screen.width/2)-(400/2);
+var top = (screen.height/2)-(500/2);
+winpops=window.open(popurl,"","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,height=500,width=400,top="+top+", left="+left);
+//winpops.moveTo(0,0);
+}
+	
+</script>
+
+</head>
+<body class=" hasGoogleVoiceExt">
+<div id="gold_sky"></div>
+<div id="bg_gradient"></div>
+<div id="layout"> 
+  <div id="logo"><a href="https://www.tr4y.org/index.php"><img src="./Transition Resources For Youth_files/logo_sm1.png" border="0"></a></div>
+  <div id="motto"> 
+    <span style="font-weight: bold; font-size: 1.5em; color: #00A0D0">T</span>ransition <span style="font-weight: bold; font-size: 1.5em; color: #00A0D0">R</span>esources <span style="font-size: 1.5em; color: #00A0D0">4</span> <span style="font-weight: bold; font-size: 1.5em; color: #00A0D0">Y</span>outh
+  </div>
+  <div id="students"> 
+    <a href="https://www.tr4y.org/video/mo/tr4y_multimedia%20intro_v2p5.mp4" target="_blank"><img src="./Transition Resources For Youth_files/viewer_spaced.png" border="0"></a>        <img src="./Transition Resources For Youth_files/students.png" width="175"></div>
+  <div id="logintitle">User Log-In</div>
+  <div id="login"> 
+    
+<div id="loginholder">
+<div id="loginbox" style="display: block;"> <table cellpadding="5" align="center">
+          <form autocomplete="on" method="post"></form>
+          <input type="hidden" name="login_attempt" value="1">
+            <tbody><tr>
+              <td align="right"><strong>Email: </strong></td>
+              <td><input type="text" name="user_email" value="" size="20" tabindex="1" autocomplete="on"></td>
+              <td rowspan="2"><input type="button" value="Log-in" onclick="login(this.form.user_email.value,this.form.password.value);"><br><span id="loginfail" style="color:red"></span></td>
+            </tr>
+            <tr>
+              <td align="right"><strong>Password: </strong></td>
+              <td><input type="password" name="password" size="20" tabindex="2" onkeydown="if (event.keyCode == 13) login(this.form.user_email.value,this.form.password.value);"></td>
+            </tr>
+            
+          </tbody></table>
+          <a href="https://www.tr4y.org/password_resend.php" class="loginlink">Forgot your password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.tr4y.org/register.user_sel.php" class="loginlink">Registration Form</a>	
+</div>
+<script>
+function switch_districts(new_district_id) {
+	window.location="index.php?switch_district=1&new_district_id=" + new_district_id;
+}
+</script>
+<div id="loginstatus"> <table cellpadding="3" cellspacing="0" align="center" width="275">
+            <tbody><tr align="center">
+              <td>Logged in as: <br><span id="user_email_disp" style="font-size: 14px; color: #336699;"></span>
+                            </td>
+            </tr>
+            <tr align="center">
+              <td><span id="adminlink" style="display: none;"><input type="button" value="Admin Menu" onclick="window.location=&#39;admin/admin_menu.php&#39;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="button" value="My Toolbox" onclick="window.location=&#39;toolbox.php&#39;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Log-out" onclick="logout();"></td>
+            </tr>
+
+          </tbody></table>
+          </div>
+</div>
+<style>
+#loginholder { position: relative; 
+	width: 275px;
+	height: 85px;
+	font-size: 11px;
+	text-align: center;
+	color: #000000;	}
+#loginbox { position: absolute; top: 0px; left: 0px; display: none; }
+#loginstatus { position: absolute; top: 0px; left: 0px; display: none; }
+</style>
+
+<script>
+var loggedin=0;
+
+var secure_page=0;
+
+$(document).ready(function() {
+// SOME CODE HERE
+	$("#adminlink").css("display","none");
+	if (loggedin==1) {
+		$("#loginbox").hide('slow', function() { $("#loginstatus").show('slow'); } ); 
+		$("#logintitle").css("background-color", "#008000");
+	}
+	else  $("#loginstatus").hide('slow', function() { $("#loginbox").show('slow'); } ); 
+});
+
+
+function login(user_email,password) {
+	var requestData = { user_email: user_email, password: password }
+	$.ajaxSetup ({ cache: false });    // Disable caching of AJAX responses  
+	$.get("ajax/user.login.php",requestData,function(responseXML) {
+	stat = $(responseXML).find('status').text();
+	if (stat=="success") {
+		//$("#logintitle").css("background-color", "#008000");
+		//$("#loginbox").hide('slow', function() { $("#loginstatus").show('slow'); } );
+		//user_email = $(responseXML).find('user_email').text();			
+		//$("#user_email_disp").text(user_email);
+		//var admin = $(responseXML).find('admin').text();
+		//if (admin=="yes") $("#adminlink").css("display: inline");
+		window.location="toolbox.php"; 		
+	}
+	else { 
+		document.getElementById('loginfail').innerHTML = "Log-in Failed";
+		$("#logintitle").css("background-color", "#ff0000");
+
+	}
+	});
+}
+
+function logout() {
+	$.ajaxSetup ({ cache: false });    // Disable caching of AJAX responses 
+	$.get("ajax/user.logout.php",'',function(responseXML) {
+	if (secure_page==1) { window.location="index.php";  }
+	$("#loginstatus").hide('slow',function() { $("#loginbox").show('slow'); }); 
+	$("#logintitle").css("background-color", "#5cb8d7");	
+	});
+}
+
+
+</script>
+
+
+
+
+  </div>
+  <div id="navbar"> 
+    <ul id="topnav">
+          <li id="navMenu1"> <a href="https://www.tr4y.org/#" class="home">About TR4Y</a> </li>
+    <li id="navMenu2"> <a href="https://www.tr4y.org/#" class="about">Resources</a> </li>
+    <li id="navMenu3"><a href="https://www.tr4y.org/#" class="data">Tools</a></li>
+     <li id="navMenu4" style="color: rgb(255, 255, 255);"><a href="https://www.tr4y.org/#" class="data">Contact Us</a></li>          </ul>
+    <div id="navcap"><img src="./Transition Resources For Youth_files/navcap.png"></div>
+    <div id="search"> 
+      <form method="post" action="https://www.tr4y.org/resources.search.php"><table cellpadding="0" cellspacing="0" border="0" align="right"><tbody><tr valign="middle">
+<td><input type="text" name="keywords" value="" width="20"><input type="hidden" name="new_search" value="1"></td><td width="10">&nbsp;</td><td><input type="image" src="./Transition Resources For Youth_files/search_btn.png" alt="Search"></td></tr></tbody></table></form>    </div>
+  </div>
+  <div id="content"> 
+    <div id="intro"> <span class="pagetitle">Welcome to the Transition Resources 
+      for Youth website, or simply, tr4y.</span> 
+      <p>This website offers youth, families, educators and agencies high quality transition tools and resources designed to improve the transition planning process and ultimately enhance the lives and post school outcomes of youth with disabilities. Register for and account to use the tools and save favorite resources, or simply search our high quality resources.   New resources are added daily, so check back often to see what's new!</p>
+<p>Using TR4Y will assist users in enhancing the transition planning process for improved post school outcomes of youth with disabilities. As you get started using the website, determine how you will use the website and if you need to register for a TR4Y account.</p>
+      <!--<p>This website offers youth,
+families, educators and agencies high quality transition tools and resources to help improve and
+enhance the transition process and the post school (adult) lives of persons with disabilities.</p>-->
+    </div>
+    <div id="homemaincol"> 
+      <div id="slideshowholder"> 
+        <div class="mygallery" style="visibility: visible;">
+
+<div class="tn3e-gallery" style="float: left; width: 400px; height: 300px;">
+    <div class="tn3e-image" style="width: 380px; height: 280px; overflow: hidden; position: relative;"><div class="tn3e-image-in" style="position: absolute; overflow: hidden; width: 380px; height: 280px; left: 0px;"><div class="tn3e-full-image" style="position: absolute; width: 373px; height: 280px; left: 3.5px; top: 0px;"><img src="./Transition Resources For Youth_files/website.jpg" width="373" style="width: 373px; height: 280px;" height="280"></div></div>
+    	
+	
+    <div class="tn3-in-image" style="position: absolute; width: 373px; height: 280px; left: 3.5px; top: 0px; display: block;"><div class="tn3e-control-bar tn3_v tn3_h tn3_o" style="top: 100px; left: 65px; display: none;">
+	    <div class="tn3e-play tn3e-play-active" title="Stop Slideshow"></div>
+        </div><div class="tn3e-preloader" style="display: none;"><img src="./Transition Resources For Youth_files/preload.gif"></div></div></div>
+
+</div>
+
+</div>
+      </div>
+    </div>
+
+    <div id="aside"> 
+      <script>
+function show_resource(resource_id) {
+var popurl="view.php?resource_id=" + resource_id + "&keywords="; // + "&user_id=" + user_id;
+var left = (screen.width/2)-(400/2);
+var top = (screen.height/2)-(500/2);
+winpops=window.open(popurl,"","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=no,height=500,width=400,top="+top+", left="+left);
+//winpops.moveTo(0,0);
+}
+</script>
+      <fieldset>
+      <legend>Popular Searches</legend>
+      <ul style="padding-left: 16px; font-size: 12px">
+        <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=post-school%20transition%20planning.">post-school transition planning.</a></li> <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=Transition%20Planning%20Inventory">Transition Planning Inventory</a></li> <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=age%20appropriate%20transition%20planning">age appropriate transition planning</a></li> <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=transition%20planning%20committee">transition planning committee</a></li> <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=iep%20and%20transition%20planning">iep and transition planning</a></li> <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=transition%20from%20school%20to%20life%20after%20school">transition from school to life after school</a></li> <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=transitioning%20youth%20with%20special%20health%20care%20needs">transitioning youth with special health care needs</a></li> <li style="padding-bottom: 5px;"><a style="text-decoration: none" href="https://www.tr4y.org/resources.search.php?new_search=1&amp;exact_phrase=1&amp;keywords=transition%20planning">transition planning</a></li>       </ul>
+      </fieldset>
+    </div>
+    <br clear="all">
+
+
+    <div id="footer"> 
+      <table cellpadding="10" cellspacing="0" border="0" align="center" width="100%">
+<tbody><tr align="center">
+<td>
+<!--<span class="grant">This document was produced under U.S. Dept. of Education, OSEP Grant #H323A070022-11 and made possible by SPDG # 12-9912-SPDG. </span><br>&nbsp;<br> -->
+<a class="btmMiniMenu" href="https://www.tr4y.org/privacy.php">Privacy Rights</a>
+<!-- | <a class="btmMiniMenu" href="dpi_disclaimer.php">Acknowledgements</a> -->
+<br>&nbsp;<br>
+<span class="copyright">Transition Resources 4 Youth © 2012 &nbsp;&nbsp;| &nbsp;&nbsp;All rights reserved.</span>
+</td>
+</tr>
+</tbody></table>
+    </div>
+  </div>
+  <div id="dropMenu1" class="menuDrop" style="visibility: hidden;">
+<table cellspacing="20" class="navdrop" width="100%">
+<tbody><tr align="left">
+<td>
+<a href="https://www.tr4y.org/video/mo/tr4y_multimedia%20intro_v2p5.mp4" target="_blank">TR4Y Introduction Video</a>
+</td>
+<td><a href="https://www.tr4y.org/video/mo/tr4y_multimedia%20intro_v2p5.mp4" target="_blank"><img src="./Transition Resources For Youth_files/viewer.png" width="70" border="0"></a></td>
+</tr>
+<tr align="left">
+<td>
+<a href="https://www.tr4y.org/tr4y.about.php">About TR4Y</a>
+</td>
+<td><a href="https://www.tr4y.org/tr4y.about.php"><img src="./Transition Resources For Youth_files/logo_sm1.png" width="70" border="0"></a></td>
+</tr>
+<tr align="left">
+<td>
+<a href="https://www.tr4y.org/tr4y.about.users.php">Getting TR4Y Users Started</a>
+</td>
+<td><a href="https://www.tr4y.org/tr4y.about.users.php"><img src="./Transition Resources For Youth_files/users.jpg" width="70" border="0"></a></td>
+</tr>
+<!--
+<tr align="left">
+<td>
+<a href="tr4y.about.tools.php">About TR4Y Tools</a>
+</td>
+<td><a href="tr4y.about.tools.php"><img src="images/icons/tools.png" width="50" border="0"></a></td>
+</tr>
+<tr align="left">
+<td>
+<a href="tr4y.about.resources.php">About TR4Y Resources</a>
+</td>
+<td><a href="tr4y.about.resources.php"><img src="images/icons/aboutresources.jpg" width="50" border="0"></a></td>
+</tr>
+-->
+<tr align="left">
+<td>
+<a href="https://www.tr4y.org/tr4y.lc.php">Learning Center</a>
+</td>
+<td><a href="https://www.tr4y.org/tr4y.lc.php"><img src="./Transition Resources For Youth_files/lc.png" width="50" border="0"></a></td>
+</tr>
+<tr align="left">
+<td>
+<a href="https://www.tr4y.org/tr4y.faq.php">Frequently Asked Questions</a>
+</td>
+<td><a href="https://www.tr4y.org/tr4y.faq.php"><img src="./Transition Resources For Youth_files/faq.jpg" width="50" border="0"></a></td>
+</tr>
+</tbody></table>
+</div>
+
+<div id="dropMenu2" class="menuDrop" style="visibility: hidden;">
+<table cellspacing="20" class="navdrop" width="100%">
+<tbody><tr align="left">
+<td>
+<a href="https://www.tr4y.org/resources.about.php">About the TR4Y Resources</a>
+</td>
+<td><a href="https://www.tr4y.org/resources.about.php"><img src="./Transition Resources For Youth_files/aboutresources.jpg" width="50" border="0"></a></td>
+</tr>
+<tr align="left">
+<td>
+<a href="https://www.tr4y.org/resources.ebp.about.php">About Evidence-Based Practices</a>
+</td>
+<td><a href="https://www.tr4y.org/resources.ebp.about.php"><img src="./Transition Resources For Youth_files/aboutresources.jpg" width="50" border="0"></a></td>
+</tr>
+<tr align="left">
+<td>
+<a href="https://www.tr4y.org/resources.search.php">Search/Sort ALL Resources</a>
+</td>
+<td><a href="https://www.tr4y.org/resources.search.php"><img src="./Transition Resources For Youth_files/search.jpg" width="70" border="0"></a></td>
+</tr>
+<!--
+<tr align="left">
+<td>
+<a href="resources.search.php?rsort=new">New Resources</a>
+</td>
+<td><a href="resources.search.php?rsort=new"><img src="images/icons/newresources.jpg" width="50" border="0"></a></td>
+</tr>
+<tr align="left">
+<td>
+<a href="resources.search.php?rsort=popularity">Most Popular Resources</a>
+</td>
+<td><a href="resources.search.php?rsort=popularity"><img src="images/icons/mostpopular.jpg" width="50" border="0"></a></td>
+</tr>
+-->
+<tr align="left">
+<td>
+<a href="https://www.tr4y.org/resources.suggest.php">Suggest a Resource</a>
+</td>
+<td><a href="https://www.tr4y.org/resources.suggest.php"><img src="./Transition Resources For Youth_files/suggest.jpg" width="50" border="0"></a></td>
+</tr>
+</tbody></table>
+</div>
+
+<div id="dropMenu3" class="menuDropWide" style="visibility: hidden;">
+<br><br><div align="center">You must be logged in to access online tools</div><br><br></div>
+
+
+<div id="dropMenu4" class="menuDrop" style="visibility: hidden; left: 360px; top: 177px; display: block;">
+<table cellspacing="20" class="navdrop" width="100%">
+<tbody><tr align="left">
+<td><a href="https://www.tr4y.org/contact.php">Contact Us</a>
+</td>
+<td><a href="https://www.tr4y.org/contact.php"><img src="./Transition Resources For Youth_files/contact.jpg" width="60" border="0"></a></td>
+</tr>
+</tbody></table>
+</div></div>
+
+
+
+
+<div id="vidyowebrtcscreenshare_is_installed"></div></body></html>

@@ -1,0 +1,108 @@
+jQuery(document).ready(function() {
+  jQuery("img").unveil(200);
+
+  if( jQuery(window).width() > 767)
+  {
+    jQuery('.main-navigation ul.menu').superfish({
+      popUpSelector: 'ul.sub-menu',
+      hoverClass:    'menu-hover',
+      cssArrows:     false
+    });
+  }
+
+  //jQuery("abbr.timeago").timeago();
+  //jQuery("time").timeago();
+  
+
+  jQuery('.share-box .social-post-list li a').hover(function(){
+    jQuery(this).parent().parent().parent('.share-box').addClass(jQuery(this).parent().attr('class'));
+
+    },function(){ jQuery(this).parent().parent().parent('.share-box').removeClass(jQuery(this).parent().attr('class')); } )
+
+
+});
+function equalheights(){
+  if( jQuery(window).width() > 767){
+    var currentTallest = 0,
+     currentRowStart = 0,
+     rowDivs = new Array(),
+     jQueryel,
+     topPosition = 0;
+
+ jQuery('.equal-height').each(function() {
+
+   jQueryel = jQuery(this);
+   topPostion = jQueryel.position().top;
+   
+   if (currentRowStart != topPostion) {
+
+     // we just came to a new row.  Set all the heights on the completed row
+     for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+       rowDivs[currentDiv].outerHeight(currentTallest);
+     }
+
+     // set the variables for the new row
+     rowDivs.length = 0; // empty the array
+     currentRowStart = topPostion;
+     currentTallest = jQueryel.outerHeight();
+     rowDivs.push(jQueryel);
+
+   } else {
+
+     // another div on the current row.  Add it to the list and check if it's taller
+     rowDivs.push(jQueryel);
+     currentTallest = (currentTallest < jQueryel.outerHeight()) ? (jQueryel.outerHeight()) : (currentTallest);
+
+  }
+   
+  // do the last row
+   for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+     rowDivs[currentDiv].outerHeight(currentTallest);
+   }
+   
+ });
+}else{
+ jQuery('.equal-height').each(function() {
+  jQuery(this).css({height:''});
+ });
+};
+
+
+}
+
+function debouncer( func , timeout ) {
+   var timeoutID , timeout = timeout || 200;
+   return function () {
+      var scope = this , args = arguments;
+      clearTimeout( timeoutID );
+      timeoutID = setTimeout( function () {
+          func.apply( scope , Array.prototype.slice.call( args ) );
+      } , timeout );
+   }
+}
+
+ /* jQuery(function(){
+    jQuery('.site-title').textfill({ maxFontPixels: 30, minFontPixels: 16, widthOnly: true });
+  });*/
+
+jQuery( window ).resize( debouncer( function ( e ) {
+  equalheights();
+
+  /*jQuery(function(){
+    jQuery('.site-title').textfill({ maxFontPixels: 30, minFontPixels: 16, widthOnly: true });
+  });*/
+
+  if( jQuery(window).width() > 767)
+  {
+    jQuery('.main-navigation ul.menu').superfish({
+      popUpSelector: 'ul.sub-menu',
+      hoverClass:    'menu-hover',
+      cssArrows:     false
+    });
+  }
+
+}));
+
+jQuery(window).load(function() {
+  equalheights();
+});
