@@ -1,6 +1,8 @@
 # Gender Trends Resource Repository
 
-Gender Trends is a work in progress. It is not a comprehensive or exhaustive repository of resources relevant to the current understanding of Gender Non-Conformity, Gender Identity, Gender Dysphoria or any issues or parties concerned. The current set of resources represent those significant to the research, clinical guidelines and policies supporting these matters as a public concern. 
+Gender Trends is a work in progress. It is not a comprehensive or exhaustive repository of resources relevant to the current understanding of Gender Non-Conformity, Gender Identity, Gender Dysphoria or the issues and parties that are associated with these topics. 
+
+The current set of resources represent those significant to the research history, clinical guidelines and policies supporting these matters as a public concern. 
 
 ## Popular Resources
 
