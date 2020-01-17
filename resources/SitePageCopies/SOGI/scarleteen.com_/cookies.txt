@@ -1,0 +1,17 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.scarleteen.com	TRUE	/webim/	FALSE	1999999999	MibewSessionID	2cgfh6sh37rm0oo7rq6mb7pu97
+www.scarleteen.com	TRUE	/webim/	FALSE	1999999999	mibew_locale	en
+.scarleteen.com	TRUE	/	FALSE	1999999999	SSESS94a58689480ee0b0aefd291f4de9c8b5	8AuFBa9ojMY-SsbcxjkDMx54sXmjjq3MzRI8fIaLDaY
+www.scarleteen.com	TRUE	/	FALSE	1999999999	MIBEW_UserID	5e1e8650a930b6.73002725
+.scarleteen.com	TRUE	/	FALSE	1999999999	phpbb3_rt57b_track	tf%3A%282%3A%287f3%3A1%3B%29%3B%29%3Bt%3A%287f3%3A2usc73%3B%29%3B
+.paypalobjects.com	TRUE	/	FALSE	1999999999	PYPF	CT
+en.wikipedia.org	TRUE	/	FALSE	1999999999	WMF-Last-Access	15-Jan-2020
+.wikipedia.org	TRUE	/	FALSE	1999999999	WMF-Last-Access-Global	15-Jan-2020
+.wikipedia.org	TRUE	/	FALSE	1999999999	GeoIP	US:NJ:Lambertville:40.38:-74.93:v4
+www.scarleteen.com	TRUE	/	FALSE	1999999999	session2453797.1317	NEW&
+www.scarleteen.com	TRUE	/	FALSE	1999999999	login2453797.1317	01-15-2020%2001%3A05%20AM&2458864.0105
+www.scarleteen.com	TRUE	/	FALSE	1999999999	PnTf_2453797.1317	VrnxYirJoTncMTDo&73.178.116.127&26317865&&1&0
+.scarleteen.com	TRUE	/	FALSE	1999999999	phpbb3_rt57b_u	1
+.scarleteen.com	TRUE	/	FALSE	1999999999	phpbb3_rt57b_sid	18368194b4a07f736e2bde6ccf9b8ac6
+
