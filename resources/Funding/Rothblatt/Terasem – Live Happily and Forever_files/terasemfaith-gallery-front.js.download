@@ -1,0 +1,119 @@
+jQuery(document).ready(function($) {
+    /*Fancybox lightbox gallery*/
+    /*Title get from atr: title*/
+    /*Description get from atr: alt*/
+    jQuery(document).ready(function($) {
+        /*Fancybox lightbox gallery*/
+        /*Title get from atr: title*/
+        /*Description get from atr: alt*/
+        $().fancybox({
+            selector : '[data-fancybox="gallery"]',
+            loop     : true,
+            caption : function(instance, item) {
+                var caption = $(this).find('img').attr('title') || '';
+                var description = $(this).find('img').attr('alt') || '';
+                if ( item.type === 'image' ) {
+                    caption = (caption.length ? caption + '<br />' : '') + (description.length ? '<div class="container">' + description + '</div><br />' : '') ;
+                }
+                return caption;
+            }
+        });
+
+        /*Centered popup window*/
+        $(window).on('resize load', function() {
+            var popup = $('#terasemfaith-gallery-popup-form');
+            var wind_width = $(window).width();
+            var wind_height = $(window).height();
+            var popup_width = popup.outerWidth(true);
+            var popup_height = popup.outerHeight(true);
+            if (window.matchMedia("(max-width: 450px)").matches) {
+                var pos_left = 0;
+            } else {
+                var pos_left = parseInt((wind_width - popup_width)/2);
+            }
+
+            var pos_top = parseInt((wind_height - popup_height)/2);
+            popup.css({'left': pos_left, 'top': pos_top});
+        });
+        /*Open popup*/
+        $('body').on('click', '.terasemfaith-gallery__edit', function() {
+            $('#terasemfaith-image-edit-result').text('').css('color', '#000');
+            var id = $(this).data('id');
+            var title = $('#terasemfaith-gallery-image-' + id).attr('title');
+            var description = $('#terasemfaith-gallery-image-' + id).attr('alt');
+            $('#terasemfaith-image-id').val(id);
+            $('#terasemfaith-image-title').val(title);
+            $('#terasemfaith-image-description').val(description);
+            $('.terasemfaith-gallery__overlay').fadeIn(600);
+            $('#terasemfaith-gallery-popup-form').fadeIn(800);
+        });
+        $('.terasemfaith-gallery__overlay, .terasemfaith-gallery__popup-close').click(function() {
+            $('.terasemfaith-gallery__overlay, #terasemfaith-gallery-popup-form').fadeOut(600);
+        });
+
+        /*Ajax heandler to update image title and description*/
+        /*Title get from atr: title*/
+        /*Description get from atr: alt*/
+
+        $('#terasemfaith-image-edit-form').submit(function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var info_block = $('#terasemfaith-image-edit-result');
+            info_block.text('Processing....');
+            form.css('opacity', 0.5);
+            form.find('input, textarea, button, select').attr('disabled','disabled');
+            var data = {
+    			'action': 'terasemfaith_gallery_edit_image',
+                'id': $('#terasemfaith-image-id').val(),
+                'title': $('#terasemfaith-image-title').val(),
+                'description': $('#terasemfaith-image-description').val()
+    		};
+            $.ajax({
+    			url: ajax_data.ajaxurl,
+    			data: data,
+    			type: 'POST',
+    			success:function(data){
+    				if(data) {
+                        var result = JSON.parse(data);
+                        var id = $('#terasemfaith-gallery-image-' + result[0]);
+                        id.attr('title', result[1]);
+                        id.attr('alt', result[2]);
+                        info_block.text('Successfuly').css('color', 'green');
+                        form.find('input, textarea, button, select').removeAttr('disabled');
+                        form.css('opacity', 1);
+    				} else {
+                        info_block.text('Error').css('color', 'red');
+                        form.find('input, textarea, button, select').removeAttr('disabled');
+                        form.css('opacity', 1);
+    				}
+    			}
+    		});
+        });
+
+        /*Ajax heandler to load images*/
+        $('#gallery-load-more').click(function(){
+    		$(this).text('Load...');
+    		var data = {
+    			'action': 'loadmore',
+    			'page' : ajax_data.page,
+                'ids' : ajax_data.attachment_ids
+    		};
+    		$.ajax({
+    			url: ajax_data.ajaxurl,
+    			data:data,
+    			type:'POST',
+    			success:function(data){
+    				if( data ) {
+                        var result = JSON.parse(data);
+                        $('.terasemfaith-gallery-image-wrap').append(result[0]);
+    					$('#gallery-load-more').text('Load more');
+                        ajax_data.page = result[1];
+    					if (ajax_data.page == result[2]) $("#gallery-load-more").remove();
+    				} else {
+    					$('#gallery-load-more').remove();
+    				}
+    			}
+    		});
+    	});
+    });
+});

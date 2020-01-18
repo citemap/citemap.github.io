@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+17:04:19	712/712	---M--	403	error ('Forbidden')	text/html	etag:%222c8-533ad283d2ceb%22	https://terasemfaith.net/robots.txt		(from )
+17:04:19	712/712	---M--	403	error ('Forbidden')	text/html	etag:%222c8-533ad283d2ceb%22	https://terasemfaith.net/beliefs/	C:/Users/augme/OneDrive/Documents/GitHub/citemap.github.io/resources/SitePageCopies/Terasem/Terasem/terasemfaith.net/beliefs/index.html	(from )
