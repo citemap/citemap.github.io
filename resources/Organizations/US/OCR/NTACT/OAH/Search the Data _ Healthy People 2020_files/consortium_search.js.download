@@ -1,0 +1,167 @@
+(function ($, Drupal, window, document, undefined) {
+  Drupal.behaviors.consortium_search = {attach: function (context, settings) {
+
+    var topic_filter_label = $('#filter-field_org_topic_area_target_id-wrapper legend');
+    var orgtype_filter_label = $('#filter-field_organization_type_target_id-wrapper legend');
+
+    var filter_js = function () {
+//      $('#filter-field_org_topic_area_target_id-wrapper .views-widget, #filter-field_organization_type_target_id-wrapper .views-widget').css({"position": "absolute", "z-index": "5", "top": "35px", "left": "67px", "margin-top": "0px", "border-top": "none"});
+
+      topic_filter_label.html('Show All Topic Areas');
+      orgtype_filter_label.html('Show All Organization Types');
+
+      // prevent function duplication
+      topic_filter_label.off();
+      orgtype_filter_label.off();
+      topic_filter_label.click(function () {
+        $('#filter-field_org_topic_area_target_id-wrapper .views-widget').slideToggle();
+      });
+      orgtype_filter_label.click(function () {
+        $('#filter-field_organization_type_target_id-wrapper .views-widget').slideToggle();
+      });
+
+      // prevent function duplication
+      $('#filter-field_org_topic_area_target_id-wrapper').off()
+      $('#filter-field_organization_type_target_id-wrapper').off()
+      $('#filter-field_org_topic_area_target_id-wrapper').mouseleave(function () {
+        $('#filter-field_org_topic_area_target_id-wrapper .views-widget').slideUp();
+      });
+      $('#filter-field_organization_type_target_id-wrapper').mouseleave(function () {
+        $('#filter-field_organization_type_target_id-wrapper .views-widget').slideUp();
+      });
+
+      // prevent function duplication
+      $('#filter-field_org_topic_area_target_id-wrapper input').off();
+      $('#filter-field_org_topic_area_target_id-wrapper input').change(topic_rewrite_label)
+      $('#filter-field_org_topic_area_target_id-wrapper input').change(update_reset_filters_link)
+      $('#filter-field_organization_type_target_id-wrapper input').off();
+      $('#filter-field_organization_type_target_id-wrapper input').change(orgtype_rewrite_label)
+      $('#filter-field_organization_type_target_id-wrapper input').change(update_reset_filters_link)
+
+
+      // set the 'filtered by' text
+      if ($('#filter-field_org_topic_area_target_id-wrapper input:checked, #filter-field_organization_type_target_id-wrapper input:checked').length) {
+        var filter_topics = [];
+        $('#filter-field_org_topic_area_target_id-wrapper input:checked, #filter-field_organization_type_target_id-wrapper input:checked').each(function () {
+          filter_topics.push($(this).siblings('label').text());
+        });
+        $('#views-exposed-form-consortiums-panel-pane-1').after("<div class='filtered-by'><span class='bold'>Filtered by:</span> " + filter_topics.join('; ') + " </div>");
+      }
+
+      $('#help_link').colorbox({inline:true, width:"50%"});
+    }
+
+
+
+    var topic_rewrite_label = function () {
+      var num_checked = $('#filter-field_org_topic_area_target_id-wrapper input:checked').length;
+      if (num_checked == 1) {
+        topic_filter_label.html('1 Topic Area Selected');
+        topic_filter_label.addClass('active');
+      } else if (num_checked) {
+        topic_filter_label.html(num_checked + ' Topic Areas Selected');
+        topic_filter_label.addClass('active');
+      } else {
+        topic_filter_label.html('Show All Topic Areas');
+        topic_filter_label.removeClass('active');
+      }
+    }
+    var orgtype_rewrite_label = function () {
+      var num_checked = $('#filter-field_organization_type_target_id-wrapper input:checked').length;
+      if (num_checked == 1) {
+        orgtype_filter_label.html('1 Organization Type Selected');
+        orgtype_filter_label.addClass('active');
+      } else if (num_checked) {
+        orgtype_filter_label.html(num_checked + ' Organization Types Selected');
+        orgtype_filter_label.addClass('active');
+      } else {
+        orgtype_filter_label.html('Show All Organization Types');
+        orgtype_filter_label.removeClass('active');
+      }
+    }
+
+    var reset_filters = function () {
+      $('.consortium-search-filter-reset').click(function () {
+        $('#filter-field_org_topic_area_target_id-wrapper input:checked, #filter-field_organization_type_target_id-wrapper input:checked').each(function () {
+          $(this).attr('checked', false);
+        });
+        $(this).hide();
+        topic_rewrite_label();
+        orgtype_rewrite_label();
+      });
+    }
+
+    var update_reset_filters_link = function () {
+      if ($('#filter-field_org_topic_area_target_id-wrapper input:checked, #filter-field_organization_type_target_id-wrapper input:checked').length > 0) {
+        $('.consortium-search-filter-reset').show();
+      }
+      else {
+        $('.consortium-search-filter-reset').hide();
+      }
+
+    }
+
+    var init_items_per_page = function() {
+      $('#edit-items-per-page-copy').val($('#edit-items-per-page').find(":selected").val());
+
+    }
+    var update_items_per_page = function() {
+      $('#edit-items-per-page-copy').change(function() {
+        var new_value = $(this).find(":selected").val();
+        $('#edit-items-per-page').val(new_value);
+        $('#edit-submit-consortiums').click();
+      });
+    }
+
+    /**
+    * This function rearranges the pager links.
+    * It's only necessary because theme_views_mini_pager is broken in Tao at the moment.
+    * If that issue gets resolved, use that instead of this jquery.
+    * See: https://www.drupal.org/node/1367208
+    */
+    var pager_fix = function() {
+      var left_pagers = $('.consortiums-search-footer .pager-first, .consortiums-search-footer .pager-previous');
+      var pager_numbers = $('.consortiums-search-footer .pager-list');
+      if(left_pagers.length && pager_numbers.length) {
+        left_pagers = left_pagers.detach();
+        pager_numbers.before("<ul id='left_pagers' class='links pager pager-links'></ul>");
+        $('#left_pagers').append(left_pagers);
+      }
+    }
+
+    /**
+    * Reset and disable the 'state' dropdown if there is text entered into the ZIP code box
+    */
+    var state_disable = function() {
+      var prev_state = 'All'
+
+      $('#edit-province').change(function(){
+        prev_state = $(this).val();
+      });
+
+      $('#edit-distance-postal-code').keyup(function(){
+        if ($(this).val()) {
+          $('#edit-province').val('All').attr('disabled', 'disabled');
+        } else {
+          $('#edit-province').removeAttr('disabled').val(prev_state);
+        }
+      });
+    }
+
+    if ($('.view-consortiums').length > 0) {
+      // update_reset_filters_link();
+      init_items_per_page();
+      filter_js();
+      topic_rewrite_label();
+      orgtype_rewrite_label();
+      // reset_filters();
+      update_items_per_page();
+      pager_fix();
+      state_disable();
+    }
+
+  }
+  }
+}(jQuery, Drupal, this, this.document)
+  )
+;

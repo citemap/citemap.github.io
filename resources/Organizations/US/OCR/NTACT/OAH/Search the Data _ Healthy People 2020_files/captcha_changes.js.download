@@ -1,0 +1,16 @@
+/**
+* For now, I'm using this file to add a label to captcha forms.
+* It's likely possible to do this using the re-captcha API, but the drupal module is handling that
+* and it's documentation is very unhelpful regarding customization.
+*/
+
+(function ($, Drupal, window, document, undefined) {
+  Drupal.behaviors.captcha_changes = {attach: function (context, settings) {
+    if($('#edit-captcha-form').length) {
+      // make sure this fires after the captcha has fully loaded.
+      $(window).load(function(){
+        $('#recaptcha_response_field').before("<label for='recaptcha_response_field' class='element-invisible'>Recaptcha Response Field</label>");
+      });
+    }
+  }}
+}(jQuery, Drupal, this, this.document));

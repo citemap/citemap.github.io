@@ -1,0 +1,59 @@
+/**
+* When the country field is changed, the drupal behaviors function is called a second time.
+* This variable is here to prevent that from breaking everything.
+*/
+var run_once = true;
+(function ($, Drupal, window, document, undefined) {Drupal.behaviors.consortium_submission_form = {attach: function (context, settings) {
+
+// this function solely exists to modify the color of certain chunks of text
+var color_changes = function(){
+  $('#node_consortium_organization_submissi_form_group_organization_info > h2').html("Tell us about your <span class='blue'>Organization*</span>");
+  $('#node_consortium_organization_submissi_form_group_contact_info > h2').html("Tell us about <span class='blue'>who we should contact*</span>");
+}
+
+// add a reset button to this form
+var reset_button = function(){
+  $('#edit-actions').prepend("<div id='reset_form_button' class='button'></div>");
+
+  $('#reset_form_button').click(function(){
+
+    $('#consortium-organization-submissi-node-form').find('input, textarea')
+    .removeAttr('checked')
+    .removeAttr('selected')
+    .not(':button, :submit, :reset, :hidden, :radio, :checkbox')
+    .val('');
+
+    // special cases
+    $('#consortium-organization-submissi-node-form').find('#edit-field-organization-type-und, #edit-field-organization-topic-area-und, #edit-field-organization-topic-area-2-und, #edit-field-organization-topic-area-3-und').val('_none');
+    $('#consortium-organization-submissi-node-form').find('#edit-field-organization-address-und-0-country').val('us').change();
+  });
+}
+
+var topic_dropdowns = function() {
+  $('#edit-field-organization-topic-area-2-und, #edit-field-organization-topic-area-3-und').attr('disabled', 'disabled');
+
+  $('#edit-field-organization-topic-area-und').change(function(){
+    if($(this).val() == '_none'){
+      $('#edit-field-organization-topic-area-2-und').val('_none').attr('disabled', 'disabled').change();
+    } else {
+      $('#edit-field-organization-topic-area-2-und').removeAttr('disabled');
+    }
+  });
+
+  $('#edit-field-organization-topic-area-2-und').change(function(){
+    if($(this).val() == '_none'){
+      $('#edit-field-organization-topic-area-3-und').val('_none').attr('disabled', 'disabled').change();
+    } else {
+      $('#edit-field-organization-topic-area-3-und').removeAttr('disabled');
+    }
+  });
+}
+
+if (run_once && ($('body').hasClass('cons_org_sub'))) {
+  color_changes();
+  reset_button();
+  topic_dropdowns();
+  run_once = false;
+}
+
+}}}(jQuery, Drupal, this, this.document));

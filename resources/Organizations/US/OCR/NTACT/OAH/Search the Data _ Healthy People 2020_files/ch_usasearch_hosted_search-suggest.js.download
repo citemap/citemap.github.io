@@ -1,0 +1,121 @@
+function configureQuerySuggestions(formId, callbackName, affiliate) {
+    var queryForm = document.getElementById(formId);
+    if(!queryForm) { return; }
+    var queryInput, queryStatus, querySuggestions, 
+      queryStatusClass = 'query-status',
+      queryStatusClassRegex = new RegExp('(\\s|^)' + queryStatusClass + '(\\s|$)'), 
+      querySuggestionsClass = 'query-suggestions',
+      querySuggestionsClassRegex = new RegExp('(\\s|^)' + querySuggestionsClass + '(\\s|$)');
+
+    function findSubElements(parentElement) {
+      var i,children = parentElement.children;
+      for(i=0; (!queryInput || !queryStatus || !querySuggestions )&& i<children.length; ++i) {
+        var child = children[i];
+        if(!queryInput && child.nodeName === "INPUT" && (!child.hasAttribute("type")||child.getAttribute("type")==="text"||child.getAttribute("type")==="search")) {
+          queryInput = child;
+        } else if(!queryStatus && queryStatusClassRegex.test(child.className)) {
+          queryStatus = child;
+        } else if(!querySuggestions && querySuggestionsClassRegex.test(child.className)) {
+          querySuggestions = child;
+        }
+      }
+      for(i=0; (!queryInput || !queryStatus || !querySuggestions )&& i<children.length; ++i) {
+        findSubElements(children[i]);
+      }
+    }
+    
+    findSubElements(queryForm);
+    
+    if(!queryInput || !queryStatus || !querySuggestions) { return; }
+    
+    window.queryInput = queryInput;
+    function setQueryToSpanValue() {
+        queryInput.value = this.innerHTML.replace(/<\/?strong>/g, "");
+        emptySuggestions();
+        if (queryForm) {
+            queryForm.submit();
+        }
+    }
+    function scriptOnLoad() {
+        document.body.removeChild(this);
+    }
+    function emptySuggestions() {
+        while (querySuggestions.lastChild) {
+            querySuggestions.removeChild(querySuggestions.lastChild);
+        }
+        queryStatus.innerHTML = "";
+    }
+    window[callbackName] = function (suggestionValues) {
+        emptySuggestions();
+        var value = queryInput.value, valLen = value.length, numSuggestions = suggestionValues.length;
+        for (var i = 0; querySuggestions && i < numSuggestions; ++i) {
+            var span = document.createElement("span");
+            span.setAttribute("aria-live", "off");
+            span.onclick = setQueryToSpanValue;
+            var suggestionValue = suggestionValues[i];
+            if (suggestionValue.indexOf(value) >= 0) {
+                suggestionValue = "<strong>" + suggestionValue.replace(value, "</strong>" + value + "<strong>") + "</strong>";
+            }
+            span.innerHTML = suggestionValue;
+            querySuggestions.appendChild(span);
+        }
+        if (numSuggestions > 0) {
+            queryStatus.innerHTML = numSuggestions + " result" + (numSuggestions === 1 ? " is" : "s are") + " available, use up and down arrow keys to navigate.";
+        }
+    };
+    var highlightedClassName = 'query-suggestion-highlighted';
+    function upDownKeys(direction) {
+        var typed = queryInput.getAttribute("data_typed");
+        if (!typed) {
+            typed = queryInput.value;
+            queryInput.setAttribute("data_typed", typed);
+        }
+        var suggestionIndex = -1;
+        var i,child,children = querySuggestions.children;
+        for (i = 0; i < children.length; i++) {
+            child = children[i];
+            var highlightedClassAt = child.className.indexOf(highlightedClassName);
+            if (highlightedClassAt > -1) {
+                suggestionIndex = i;
+                child.className = (child.className.substring(0, highlightedClassAt) + child.className.substring(highlightedClassAt + highlightedClassName.length)).trim();
+            }
+        }
+        suggestionIndex = Math.min(suggestionIndex + direction, children.length - 1);
+        if (suggestionIndex >= 0) {
+            child = children[suggestionIndex];
+            child.className = (child.className + " " + highlightedClassName).trim();
+            queryInput.value = child.innerHTML.replace(/<\/?strong>/g, "");
+        } else {
+            queryInput.value = typed;
+        }
+        queryInput.setAttribute("aria-valuenow", queryInput.value);
+    }
+    queryInput.onkeyup = function (e) {
+        if (e.keyCode == '38') {
+            // up arrow
+            upDownKeys(-1);
+        }
+        else if (e.keyCode == '40') {
+            // down arrow
+            upDownKeys(1);
+        }
+        else {
+            emptySuggestions();
+            queryInput.removeAttribute("data_typed");
+            var value = queryInput.value;
+            if (value.length < 2) {
+                return;
+            }
+            var script = document.createElement("script");
+            //script.src = "https://search.usa.gov/sayt?name=" + affiliate + "&q=" + queryInput.value + "&callback=" + callbackName;
+            script.src = "https://healthfinder.gov/Search/Suggest.ashx?name=healthypeople&q=" + queryInput.value + "&callback=" + callbackName;
+            script.onload = scriptOnLoad;
+            document.body.appendChild(script);
+        }
+    };
+}
+// Configure search querySuggestions for search boxes
+jQuery(document).ready(function () {
+    configureQuerySuggestions("search-block-form", "gotSuggestions", "healthypeople_i14y");
+    configureQuerySuggestions("search-block-form--2", "gotSuggestions2", "healthypeople_i14y");
+});
